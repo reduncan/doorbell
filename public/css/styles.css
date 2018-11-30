@@ -1,0 +1,62 @@
+body {
+    height: 100vh;
+    background-color: #C6C5C5;
+    font-family: 'Orbitron', sans-serif;
+}
+
+.hide {
+    display: none;
+}
+
+header {
+    font-family: 'Audiowide', cursive;
+}
+
+.center {
+    width: 750px;
+    margin: auto;
+    text-align: center;
+}
+
+h1 {
+    font-size: 150px;
+    background: linear-gradient(rgb(60, 216, 216), #4267b2);
+    background-clip: content-box;
+    -moz-background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    padding-top: 150px;
+}
+
+h2 {
+    font-size: 24px;
+    color: white;
+    font-weight: 700;
+    padding-top: 150px;
+}
+
+span {
+    font-size: 32px;
+}
+
+.success h3 {
+    font-size: 24px;
+    color: green;
+    font-weight: 700;
+}
+
+.fa-check-circle {
+    font-size: 200px;
+    color: green;
+}
+
+.denied h3 {
+    font-size: 24px;
+    color: red;
+    font-weight: 700;
+}
+
+.fa-times-circle {
+    font-size: 200px;
+    color: red;
+}
