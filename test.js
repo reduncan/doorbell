@@ -8,7 +8,7 @@ const expect = chai.expect;
 // Setting up the chai http plugin. This plugin allows for HTTP integration testing with Chai assertions!
 chai.use(chaiHttp);
 
-  // set a variable for making http requests.
+// set a variable for making http requests.
 let request;
 
 
@@ -38,10 +38,10 @@ describe('GET /api/visitors', function() {
         let responseBody = res.body;
 
 
-        //Write test expectations
-        expect(err).to.be.null;
+          //Write test expectations
+          expect(err).to.be.null;
 
-        expect(responseStatus).to.equal(200);
+          expect(responseStatus).to.equal(200);
 
         expect(responseBody)
           .to.be.an('object')
