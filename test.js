@@ -55,10 +55,10 @@ describe('GET /api/visitors', function() {
 describe('GET /api/owner', function() {
   // clear the test db 
 
-  beforeEach(function () {
-    request = chai.request(server);
-    return db.sequelize.sync({ force: true });
-  });
+  // beforeEach(function () {
+  //   request = chai.request(server);
+  //   return db.sequelize.sync({ force: true });
+  // });
 
   afterEach(function() {
   })
