@@ -24,9 +24,6 @@ describe('GET /api/visitors', function() {
   afterEach(function() {
   })
 
-  
-  //data = { first_name: 'Robert', last_name: 'Duncan', image_url: 'image.jpg'};
-
   it('should get all visitors info', function() {
       db.Visitor.create({
         first_name: 'Robert', last_name: 'Duncan', image_url: 'image.jpg'
@@ -53,39 +50,34 @@ describe('GET /api/visitors', function() {
 });
 
 describe('GET /api/owner', function() {
-  // clear the test db 
 
-  beforeEach(function () {
+  this.beforeEach(function() {
     request = chai.request(server);
     return db.sequelize.sync({ force: true });
   });
 
-  afterEach(function() {
-  })
+  it('should find all examples', function() {
+    db.Owner.bulkCreate([
+      { first_name: 'Robert', last_name: 'Duncan', phone_number: '7067615273' },
+      { first_name: 'Casey', last_name: 'Hampton', phone_number: '9048604457' }
+    ]).then(function () {
 
-  
-  //data = { first_name: 'Robert', last_name: 'Duncan', image_url: 'image.jpg'};
-
-  it('should get all owners info', function() {
-      db.Owner.create({
-        first_name: 'Weston', last_name: 'Dease', phone_number: '(404)863-4232'
-      }).then(function() {
-      //hit the GET('/api/users') endpoint
       request.get('/api/owner').end(function (err, res) {
-        //Save the response
         let responseStatus = res.status;
         let responseBody = res.body;
 
-
-        //Write test expectations
         expect(err).to.be.null;
 
         expect(responseStatus).to.equal(200);
 
         expect(responseBody)
-          .to.be.an('object')
-          .that.includes({first_name: 'Weston', last_name: 'Dease', phone_number: '(404)863-4232'});
-        done();
+          .to.be.an('array').that.has.lengthOf(2);
+
+        expect(responseBody[0])
+          .to.be.an('object').that.includes({ first_name: 'Robert', last_name: 'Duncan', phone_number: '7067615273' });
+
+          expect(responseBody[1])
+          .to.be.an('object').that.includes({ first_name: 'Casey', last_name: 'Hampton', phone_number: '9048604457' });
       });
     });
   });
