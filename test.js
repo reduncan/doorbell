@@ -55,10 +55,10 @@ describe('GET /api/visitors', function() {
 describe('GET /api/owner', function() {
   // clear the test db 
 
-  // beforeEach(function () {
-  //   request = chai.request(server);
-  //   return db.sequelize.sync({ force: true });
-  // });
+  beforeEach(function () {
+    request = chai.request(server);
+    return db.sequelize.sync({ force: true });
+  });
 
   afterEach(function() {
   })
@@ -71,7 +71,7 @@ describe('GET /api/owner', function() {
         first_name: 'Weston', last_name: 'Dease', phone_number: '(404)863-4232'
       }).then(function() {
       //hit the GET('/api/users') endpoint
-      request.get('/api/visitors').end(function (err, res) {
+      request.get('/api/owner').end(function (err, res) {
         //Save the response
         let responseStatus = res.status;
         let responseBody = res.body;
