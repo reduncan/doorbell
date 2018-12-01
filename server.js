@@ -17,8 +17,8 @@ require('./sockets/auth-sockets')(io);
 require('./routes/api-routes.js')(app);
 require('./routes/html-routes.js')(app);
 
-db.sequelize.sync({ force: false }).then(function() {
-    server.listen(PORT, function() {
-      console.log("App listening on PORT " + PORT);
-    });
+db.sequelize.sync({ force: false }).then(function () {
+  server.listen(PORT, function () {
+    console.log("App listening on PORT " + PORT);
   });
+});
