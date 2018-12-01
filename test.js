@@ -21,26 +21,28 @@ describe('GET/routes', function () {
     db.User.bulkCreate([
       { username: 'Sally', password: 'test' },
       { username: 'Lane', password: 'sample' }
-    ]).then(function () {
+    ])
+      .then(function () {
 
-      //hit the GET('/api/users') endpoint
-      request.get('/api/users').end(function (err, res) {
-        //Save the response
-        let responseStatus = res.status;
-        let responseBody = res.body;
+        //hit the GET('/api/users') endpoint
+        request.get('/api/users').end(function (err, res) {
+          //Save the response
+          let responseStatus = res.status;
+          let responseBody = res.body;
 
-        //Write test expectations
-        expect(err).to.be.null;
 
-        expect(responseStatus).to.equal(200);
+          //Write test expectations
+          expect(err).to.be.null;
 
-        expect(responseBody)
-          .to.be.an('array')
-          .that.has.lengthOf(2);
+          expect(responseStatus).to.equal(200);
 
-        expect(responseBody[0])
-          .to.be.an('object')
-          .that.includes({ username: 'Sally', password: 'test' });
+          expect(responseBody)
+            .to.be.an('array')
+            .that.has.lengthOf(2);
+
+          expect(responseBody[0])
+            .to.be.an('object')
+            .that.includes({ username: 'Sally', password: 'test' });
 
         expect(responseBody[1])
           .to.be.an('object')
