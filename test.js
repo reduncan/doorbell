@@ -7,47 +7,49 @@ const expect = chai.expect;
 // Setting up the chai http plugin. This plugin allows for HTTP integration testing with Chai assertions!
 chai.use(chaiHttp);
 
-  // set a variable for making http requests.
+// set a variable for making http requests.
 let request;
 
-describe('GET/routes', function() {
+describe('GET/routes', function () {
   // clear the test db 
   beforeEach(function () {
-      request = chai.request(server);
-      return db.sequelize.sync({ force: true });
+    request = chai.request(server);
+    return db.sequelize.sync({ force: true });
   });
 
-  it('should get all authenticated users', function() {
+  it('should get all authenticated users', function () {
     db.User.bulkCreate([
       { username: 'Sally', password: 'test' },
       { username: 'Lane', password: 'sample' }
     ])
-    .then(function () {
+      .then(function () {
 
-      //hit the GET('/api/users') endpoint
-      request.get('/api/users').end(function (err, res) {
-        //Save the response
-        let responseStatus = res.status;
-        let responseBody = res.body;
+        //hit the GET('/api/users') endpoint
+        request.get('/api/users').end(function (err, res) {
+          //Save the response
+          let responseStatus = res.status;
+          let responseBody = res.body;
 
 
-        //Write test expectations
-        expect(err).to.be.null;
+          //Write test expectations
+          expect(err).to.be.null;
 
-        expect(responseStatus).to.equal(200);
+          expect(responseStatus).to.equal(200);
 
-        expect(responseBody)
-          .to.be.an('array')
-          .that.has.lengthOf(2);
+          expect(responseBody)
+            .to.be.an('array')
+            .that.has.lengthOf(2);
 
-        expect(responseBody[0])
-          .to.be.an('object')
-          .that.includes({ username: 'Sally', password: 'test' });
+          expect(responseBody[0])
+            .to.be.an('object')
+            .that.includes({ username: 'Sally', password: 'test' });
 
-        expect(responseBody[1])
-          .to.be.an('object')
-          .that.includes({ username: 'Lane', password: 'sample' });
-        done();
+          expect(responseBody[1])
+            .to.be.an('object')
+            .that.includes({ username: 'Lane', password: 'sample' });
+          done();
+        });
+
+      });
+    });
   });
-
-});
