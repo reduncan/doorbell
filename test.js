@@ -1,7 +1,8 @@
 const chai = require('chai');
 const chaiHttp = require('chai-http');
-const server = require('./server');
+//const server = require('./server');
 const db = require('./models');
+const sinon = require('sinon');
 const expect = chai.expect;
 
 // Setting up the chai http plugin. This plugin allows for HTTP integration testing with Chai assertions!
@@ -13,10 +14,12 @@ let request;
 
 
 describe('GET api/visitors', function() {
-  // clear the test db 
+  // clear the test db
+  let server; 
+
   beforeEach(function () {
-    request = chai.request(server);
     server = sinon.fakeServer.create();
+    request = chai.request(server);
     return db.sequelize.sync({ force: true });
   });
 
@@ -27,7 +30,7 @@ describe('GET api/visitors', function() {
   
   data = { first_name: 'Robert', last_name: 'Duncan', image_url: 'image.jpg'};
 
-  it('should get all authenticated users', function() {
+  it('should get all visitors info', function() {
     server.respondWith('GET', 'api/visitors', [
       200, { 'Content-Type': 'application/json' }, JSON.stringify(data)
     ])
@@ -48,7 +51,7 @@ describe('GET api/visitors', function() {
         expect(responseBody)
           .to.be.an('object')
           .that.includes({first_name: 'Robert', last_name: 'Duncan', image_url: 'image.jpg'});
-        done();
+        //done();
       });
     });
   });
