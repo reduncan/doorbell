@@ -24,6 +24,9 @@
     "mysql2": "^1.6.4",
     "nodemon": "^1.18.6",
     "sequelize": "^4.41.2",
-    "socket.io": "^2.1.1"
+    "socket.io": "^2.1.1",
+    "imap": "^0.8.19",
+    "nodemailer": "^4.7.0",
+    "xoauth2": "^1.2.0"
   }
 }
