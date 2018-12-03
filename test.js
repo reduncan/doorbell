@@ -24,9 +24,6 @@ describe('GET /api/visitors', function() {
   afterEach(function() {
   })
 
-  
-  //data = { first_name: 'Robert', last_name: 'Duncan', image_url: 'image.jpg'};
-
   it('should get all visitors info', function() {
       db.Visitor.create({
         first_name: 'Robert', last_name: 'Duncan', image_url: 'image.jpg'
@@ -51,17 +48,6 @@ describe('GET /api/visitors', function() {
     });
   });
 });
-
-describe('GET /api/owner', function() {
-  // clear the test db 
-
-  beforeEach(function () {
-        expect(responseBody[1])
-          .to.be.an('object')
-          .that.includes({ username: 'Lane', password: 'sample' });
-        done();
-      });
-  });
 
 describe('GET /api/owner', function() {
 
