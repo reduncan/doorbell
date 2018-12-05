@@ -59,12 +59,8 @@ $('body').keyup(function(event) {
   keypress = event.keyCode;
   if ( keypress === 13 || keypress === 32 ) {
     takePhoto();
-<<<<<<< HEAD
     // setTimeout(onTakePhotoButtonClick, 3000);
-=======
-    setTimeout(onTakePhotoButtonClick, 3000);
-    setTimeout(autoCapture, 3000)
->>>>>>> 7e5687a619ea521d6fba218330fe818de9e986cc
+    // setTimeout(autoCapture, 3000)
   } 
 });
 

@@ -2,11 +2,7 @@
     "development": {
       "username": "root",
       "password": "root",
-<<<<<<< HEAD
       "database": "todolist",
-=======
-      "database": "favorite_db",
->>>>>>> 7e5687a619ea521d6fba218330fe818de9e986cc
       "host": "localhost",
       "port": 8889,
       "dialect": "mysql"
@@ -26,5 +22,5 @@
       "host": "127.0.0.1",
       "dialect": "mysql"
     }
-  }
+}
   

@@ -1,4 +1,3 @@
-
 const express = require("express");
 const app = express();
 const path = require('path');
@@ -15,20 +14,18 @@ app.use(express.static('public'));
 
 
 app.use(express.static(path.join(__dirname, './public')));
-app.use(express.static(path.join(__dirname, '../images')));
-app.use(express.static(path.join(__dirname, '../media')));
+app.use(express.static(path.join(__dirname, './images')));
 app.use(express.static(path.join(__dirname, './weights')));
 app.use(express.static(path.join(__dirname, './dist')));
 app.use('/uploads', express.static('uploads'));
 
 
 // require('./sockets/auth-sockets')(io);
-//require('./routes/html-routes.js')(app);
 //require('./nodemailer/sendMessage.js')(nodemailer,xoauth2);
 require('./routes/api-routes.js')(app);
 require('./routes/html-routes.js')(app);
 
-db.sequelize.sync({ force: false }).then(function () {
+db.sequelize.sync({ force: true }).then(function () {
   app.listen(PORT, function () {
     console.log("App listening on PORT " + PORT);
   });

@@ -32,7 +32,7 @@ function onTakePhotoButtonClick() {
     .then(imageBitmap => {
         drawCanvas(imageBitmap);
         console.log(`Photo size is ${imageBitmap.width}x${imageBitmap.height}`);
-        updateQueryImageResults();
+        updateResults();
     });
 
     
