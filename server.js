@@ -24,5 +24,3 @@ db.sequelize.sync({ force: false }).then(function() {
 }).catch(function(err){
   console.log("An error occurred")
 })
-
-module.exports = app;
