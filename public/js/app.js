@@ -3,8 +3,6 @@ const input = document.querySelector('input[type="range"]');
 
 var imageCapture;
 
-let status = false;
-
 navigator.mediaDevices.getUserMedia({ video: true })
   .then(mediaStream => {
     document.querySelector('video').srcObject = mediaStream;
@@ -62,6 +60,7 @@ $('body').keyup(function(event) {
   if ( keypress === 13 || keypress === 32 ) {
     takePhoto();
     setTimeout(onTakePhotoButtonClick, 3000);
+    setTimeout(autoCapture, 3000)
   } 
 });
 
@@ -70,3 +69,8 @@ const takePhoto = function () {
   $('.ring').addClass('hide');
   $('#face').addClass('show');
 };
+
+const autoCapture = function () {
+  $('video').addClass('hide');
+  $('#takePhotoButton').addClass('hide');
+}

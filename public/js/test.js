@@ -1,34 +1,33 @@
-describe('takePhoto', function() {
+describe('takePhoto', function () {
 
-    it('should remove the header/ring div and display the face div', function() {
+    it('should remove the header/ring div and display the face div', function () {
 
-        var e = jQuery.Event('keypress');
-        e.which = 32;
-        $(document).trigger(e);
-        
-        expect($('header')).have.class('hide');
-        expect($('.ring')).have.class('hide');
-        expect($('#face')).have.class('show');
+        var e = jQuery.Event("keyup", { keyCode: 32 });
+        jQuery("body").trigger(e);
+
+        expect($('header').hasClass('hide')).to.equal(true);
+        expect($('.ring').hasClass('hide')).to.equal(true);
+        expect($('#face').hasClass('show')).to.equal(true);
     });
 
-    it('should remove the header/ring div and display the face div', function() {
+    it('should remove the header/ring div and display the face div', function () {
 
-        var e = jQuery.Event('keypress');
-        e.which = 13;
-        $(document).trigger(e);
-        
-        expect($('header')).have.class('hide');
-        expect($('.ring')).have.class('hide');
-        expect($('#face')).have.class('show');
+        var e = jQuery.Event("keyup", { keyCode: 13 });
+        jQuery("body").trigger(e);
+
+        expect($('header').hasClass('hide')).to.equal(true);
+        expect($('.ring').hasClass('hide')).to.equal(true);
+        expect($('#face').hasClass('show')).to.equal(true);
     });
 });
 
-describe('autoCapture', function() {
+describe('autoCapture', function () {
 
-    it('should remove the video and show the canvas', function() {
+    it('should remove the video and show the canvas', function () {
 
-
-        expect($('video')).have.class('hide');
-        expect($('#takePhotoButton')).have.class('hide');
+        setTimeout(function () {
+            expect($('video').hasClass('hide')).to.equal(true);
+            expect($('#takePhotoButton').hasClass('hide')).to.equal(true);
+        }, 3000)
     })
 })

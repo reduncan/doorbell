@@ -6,6 +6,13 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Page Title</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- <link rel="stylesheet" href="../css/reset.css">
+    <link href="https://fonts.googleapis.com/css?family=Audiowide|Orbitron:400,700" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU"
+        crossorigin="anonymous">
+    <link rel="stylesheet" href="../css/styles.css"> -->
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mocha/5.2.0/mocha.min.css" />
     <style>
         #app {
@@ -22,7 +29,12 @@
         <div class="ring">
             <h2>press the <span>SPACE</span> key or <span>ENTER</span> key to gain access</h2>
         </div>
-        <div id="face" class="hide"></div>
+        <div id="face" class="hide">
+            <video autoplay></video>
+            <input type="range" class="hide">
+            <button id="takePhotoButton" class="hide" disabled>Take Photo</button>
+            <canvas></canvas>
+        </div>
         <div class="success hide">
             <i class="far fa-check-circle"></i>
             <h3>Your identity was verified!</h3>
@@ -38,7 +50,7 @@
 
     <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
         crossorigin="anonymous"></script>
-    <script src="app.js"></script>
+    <script src="../js/app.js"></script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/mocha/5.2.0/mocha.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/chai/4.1.2/chai.min.js"></script>
@@ -47,7 +59,7 @@
         mocha.reporter('html');
         const expect = chai.expect;
     </script>
-    <script src="test.js"></script>
+    <script src="../js/test.js"></script>
     <script>
         mocha.run();
     </script>
