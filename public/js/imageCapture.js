@@ -45,7 +45,7 @@ document.querySelector('video').addEventListener('play', function() {
 /* Utils */
 
 function drawCanvas(img) {
-    const canvas = document.querySelector('canvas');
+    const canvas = document.querySelector('#default');
     canvas.width = getComputedStyle(canvas).width.split('px')[0];
     canvas.height = getComputedStyle(canvas).height.split('px')[0];
     let ratio  = Math.min(canvas.width / img.width, canvas.height / img.height);
@@ -58,3 +58,23 @@ function drawCanvas(img) {
     }
 
 document.querySelector('#takePhotoButton').addEventListener('click', onTakePhotoButtonClick);
+
+$('body').keyup(function(event) {
+    keypress = event.keyCode;
+    if ( keypress === 13 || keypress === 32 ) {
+      takePhoto();
+    //   setTimeout(onTakePhotoButtonClick, 3000);
+    //   setTimeout(autoCapture, 3000)
+    } 
+  });
+  
+  const takePhoto = function () {
+    $('header').addClass('hide');
+    $('.ring').addClass('hide');
+    $('#face').addClass('show');
+  };
+  
+  const autoCapture = function () {
+    $('video').addClass('hide');
+    $('#takePhotoButton').addClass('hide');
+  }

@@ -11,7 +11,7 @@
         crossorigin="anonymous">
     <link rel="stylesheet" href="../css/styles.css">
 
-    <script src="https://code.jquery.com/jquery.js"></script>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.1.1/socket.io.js"></script>
 
     <title>faceBell</title>
@@ -21,6 +21,9 @@
     <header class="center">
         <h1>faceBell</h1>
     </header>
+    <div class="progress" id="loader">
+            <div class="indeterminate"></div>
+        </div>
     <main class="center">
         <div class="ring">
             <h2>press the <span>SPACE</span> key or <span>ENTER</span> key to gain access</h2>
@@ -29,8 +32,16 @@
             <video autoplay></video>
             <input type="range" class="hide">
             <button id="takePhotoButton" disabled>Take Photo</button>
-            <canvas></canvas>
+            <div style="position: relative" class="margin">
+                    <canvas id="default"></canvas>
+                    <canvas id="defaultOverlay" class="overlay" />
+                </div>
         </div>
+
+        <div style="position: relative"  class="margin">
+                <img id="refImage" src="../../uploads/Ben.jpeg"  style="max-width: 600px;  ">  
+                <canvas id="refImageOverlay"  class="overlay"/>
+            </div>
         <div class="success hide">
             <i class="far fa-check-circle"></i>
             <h3>Your identity was verified!</h3>
@@ -41,7 +52,9 @@
             <h3>Your photo is being sent to the owner for approval.</h3>
         </div>
     </main>
-    <script src="../js/app.js"></script>
+    <!-- <script src="../js/app.js"></script> -->
 </body>
+<script src="js/imageCapture.js"></script>
+<script src="js/updateToFaceAPI.js"></script>
 
 </html>
