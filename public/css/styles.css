@@ -8,6 +8,10 @@ body {
     display: none;
 }
 
+.show {
+    display: contents;
+}
+
 header {
     font-family: 'Audiowide', cursive;
 }
