@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script src="face-api.js"></script>
+    <script src="js/drawing.js"></script>
+    <script src="js/faceDetectionControls.js"></script>
+    <link rel="stylesheet" href="facebell.css">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.css">
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+</head>
+
+<body>
+    <video autoplay></video>
+    <input type="range">
+    <button id="takePhotoButton">Take Photo</button>
+
+    <div style="position: relative" class="margin">
+        <canvas id="default"></canvas>
+        <canvas id="defaultOverlay" class="overlay" />
+    </div>
+
+    <div class="center-content page-container">
+
+        <!-- <p> Reference Image: </p> -->
+
+        <div class="progress" id="loader">
+            <div class="indeterminate"></div>
+        </div>
+        <!-- <div style="position: relative" class="margin">
+            <img id="refImg" src="" style="max-width: 600px;" />
+            <canvas id="refImgOverlay" class="overlay" />
+        </div> -->
+
+        <!-- <div class="row side-by-side"> -->
+
+            <!-- image_selection_control -->
+            <!-- <div class="row">
+                <label>Upload Image:</label>
+                <div>
+                    <input id="refImgUploadInput" type="file" class="bold" onchange="uploadRefImage()" accept=".jpg, .jpeg, .png">
+                </div>
+            </div>
+        </div>
+    </div> -->
+
+    <div style="position: relative" style="display:none;" class="margin">
+            <img id="refImage" src="../uploads/Ben.jpeg"  style="max-width: 600px; display:none; ">  
+            <canvas id="refImageOverlay" style="display:none;" class="overlay"/>
+        </div>
+
+
+</body>
+<script src="js/imageCapture.js"></script>
+<script src="js/updateToFaceAPI.js"></script>
+
+</html>
