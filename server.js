@@ -17,7 +17,6 @@ app.use(express.static(path.join(__dirname, './public')));
 app.use(express.static(path.join(__dirname, './images')));
 app.use(express.static(path.join(__dirname, './weights')));
 app.use(express.static(path.join(__dirname, './dist')));
-app.use('/uploads', express.static('uploads'));
 
 
 // require('./sockets/auth-sockets')(io);
