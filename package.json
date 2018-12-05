@@ -21,15 +21,16 @@
   "dependencies": {
     "chai": "^4.2.0",
     "chai-http": "^4.2.0",
+    "dotenv": "^6.1.0",
     "express": "^4.16.4",
+    "imap": "^0.8.19",
     "mocha": "^5.2.0",
     "mysql2": "^1.6.4",
+    "nodemailer": "^4.7.0",
     "nodemon": "^1.18.6",
     "sequelize": "^4.41.2",
     "sinon": "^7.1.1",
     "socket.io": "^2.1.1",
-    "imap": "^0.8.19",
-    "nodemailer": "^4.7.0",
     "xoauth2": "^1.2.0"
   }
 }
