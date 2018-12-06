@@ -16,6 +16,7 @@ app.use(express.static('public'));
 // require('./sockets/auth-sockets')(io);
  require('./routes/api-routes.js')(app);
 // require('./routes/html-routes.js')(app);
+ require('./public/js/auth-receiver.js');
 
 db.sequelize.sync({ force: false }).then(function() {
     server.listen(PORT, function() {
