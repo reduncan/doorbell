@@ -72,6 +72,6 @@ const takePhoto = function () {
 };
 
 const autoCapture = function () {
-  $('video').addClass('hide');
   $('#takePhotoButton').addClass('hide');
+  $('video').addClass('hide');
 }
