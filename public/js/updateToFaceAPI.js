@@ -22,14 +22,27 @@ function drawFaceRecognitionResults(results) {
   // resize detection and landmarks in case displayed image is smaller than
   // original size
   resizedResults = resizeCanvasAndResults($('#default').get(0), canvas, results)
-  const boxesWithText = resizedResults.map(({ detection, descriptor }) => 
+  const boxesWithText = resizedResults.map(({ detection, descriptor }) =>
     new faceapi.BoxWithText(
       detection.box,
-      faceMatcher.findBestMatch(descriptor).toString(),
-      )); 
-      faceapi.drawDetection(canvas, boxesWithText);
+      faceMatcher.findBestMatch(descriptor).toString()
+    )
+  )
+  //let allFaces = 0;
+  const allFaces = boxesWithText.filter(e=> e._text.indexOf('unknown') !==0
+    );
+   console.log(allFaces.length, boxesWithText.length);
+  if(allFaces.length === 0 && boxesWithText.length !==0){
+    console.log('call ajax');
+    $.ajax({ url: "/api/sendNodeMailer", method: "GET" }).then(
+      function (e) {
+          console.log('-------get into face-api and trigger sendNodeMailer---------');
+      }
+  );
   }
-    
+
+  faceapi.drawDetection(canvas, boxesWithText)
+}
 
 async function run() {
   // load face detection, face landmark model and face recognition models
