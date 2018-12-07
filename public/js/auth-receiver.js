@@ -1,10 +1,18 @@
-//process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
+process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
 
 /////////////receiving Email
+var five = require("johnny-five");
+var board = new five.Board();
+
 const Imap = require('imap');
 const inspect = require('util').inspect;
 const fs = require('fs');
 //const fileStream;
+
+board.on("ready", function() {
+    var servo = new five.Servo(10);
+
+    servo.min();
 
 //dont know which of these to use
 var today;
@@ -48,6 +56,10 @@ function openInbox(cb) {
 //event fire on new mail, sends status to servo function
 imap.on('mail', function(mail) {
     console.log('--------------> MAIL EVENT WAS FIRED <------------');  
+    servo.max();
+    setTimeout(() => {
+        servo.center();
+      }, 1500);
 });
 
 
@@ -90,3 +102,4 @@ imap.once('end', function () {
     console.log('Connection ended');
 });
 imap.connect();
+})
