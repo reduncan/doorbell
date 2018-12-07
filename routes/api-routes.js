@@ -1,4 +1,7 @@
 const db = require('../models');
+const nodemailer = require('nodemailer');
+const xoauth2 = require('xoauth2');
+const sendNodeMailer =  require('../nodemailer/sendMessage.js');
 module.exports = function(app) {
 
   app.get('/api/visitors', function(req, res) {
@@ -13,5 +16,8 @@ module.exports = function(app) {
         console.log("get owner");
       res.json(dbOwner);
     });
+  });
+  app.get('/api/sendNodeMailer',function(req,res){
+    sendNodeMailer.sendMessage(nodemailer,xoauth2);
   });
 };

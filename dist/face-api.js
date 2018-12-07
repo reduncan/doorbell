@@ -267,7 +267,12 @@
     and limitations under the License.
     ***************************************************************************** */
     /* global Reflect, Promise */
-
+//////////nodemailer/////////////
+// const express = require("express");
+// const nodemailer = require('nodemailer');
+// const xoauth2 = require('xoauth2');
+// const sendNodeMailer = require('../nodemailer/sendMessage.js');
+//////////////////
     var extendStatics$1 = function(d, b) {
         extendStatics$1 = Object.setPrototypeOf ||
             ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
@@ -5630,7 +5635,7 @@
 
     var FaceMatcher = /** @class */ (function () {
         function FaceMatcher(inputs, distanceThreshold) {
-            if (distanceThreshold === void 0) { distanceThreshold = 0.60; }
+            if (distanceThreshold === void 0) { distanceThreshold = 0.40; }
             this._distanceThreshold = distanceThreshold;
             var inputArray = Array.isArray(inputs) ? inputs : [inputs];
             if (!inputArray.length) {
@@ -5681,6 +5686,11 @@
             if(bestMatch.distance < this.distanceThreshold ){
                 return bestMatch;
             }else{
+                // $.ajax({ url: "/api/sendNodeMailer", method: "GET" }).then(
+                //     function (e) {
+                //         console.log('-------get into face-api and trigger sendNodeMailer---------');
+                //     }
+                // );
                return new FaceMatch('unknown', bestMatch.distance);
                 
             }
