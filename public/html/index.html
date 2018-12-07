@@ -1,36 +1,58 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-
+    <script src="face-api.js"></script>
+    <script src="js/drawing.js"></script>
+    <script src="js/faceDetectionControls.js"></script>
+    <script src="js/bbt.js"></script>
     <link rel="stylesheet" href="../css/reset.css">
-    <link href="https://fonts.googleapis.com/css?family=Audiowide|Orbitron:400,700" rel="stylesheet">    
+    <link href="https://fonts.googleapis.com/css?family=Audiowide|Orbitron:400,700" rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU"
-        crossorigin="anonymous">    
+        crossorigin="anonymous">
     <link rel="stylesheet" href="../css/styles.css">
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
 
     <title>faceBell</title>
 </head>
+
 <body>
     <header class="center">
         <h1>faceBell</h1>
     </header>
+    <div class="progress" id="loader">
+        <div class="indeterminate"></div>
+    </div>
     <main class="center">
         <div class="ring">
             <h2>press the <span>SPACE</span> key or <span>ENTER</span> key to gain access</h2>
         </div>
-        <div id="face" class="hide"></div>
+        <div id="face" class="hide">
+            <video autoplay></video>
+            <input type="range" class="hide">
+            <button id="takePhotoButton" disabled>Take Photo</button>
+             <div style="position: relative" class="margin">
+        <canvas id="default"></canvas>
+        <canvas id="defaultOverlay" class="overlay" />
+    </div>
+        </div>
+
         <div class="success hide">
             <i class="far fa-check-circle"></i>
             <h3>Your identity was verified!</h3>
         </div>
         <div class="denied hide">
             <i class="fas fa-times-circle"></i>
-            <h3>Sorry, your identity could not be verified.</h3> 
+            <h3>Sorry, your identity could not be verified.</h3>
             <h3>Your photo is being sent to the owner for approval.</h3>
         </div>
     </main>
+    <script src="../js/app.js"></script>
+    <script src="js/updateToFaceAPI.js"></script>
 </body>
+
 </html>

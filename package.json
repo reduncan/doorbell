@@ -4,7 +4,7 @@
   "description": "class project",
   "main": "server.js",
   "scripts": {
-    "PCtest": "SET NODE_ENV=test&& mocha",
+    "testpc": "SET NODE_ENV=test&& mocha",
     "test": "NODE_ENV=test mocha",
     "start": "nodemon server.js"
   },
@@ -21,18 +21,26 @@
   "dependencies": {
     "chai": "^4.2.0",
     "chai-http": "^4.2.0",
+    "dotenv": "^6.1.0",
     "express": "^4.16.4",
+<<<<<<< HEAD
     "fs": "0.0.1-security",
     "imap": "^0.8.19",
     "johnny-five": "^1.0.0",
+=======
+    "imap": "^0.8.19",
+>>>>>>> aff0a02709443f62f153d56069b95f7fce83aee6
     "mocha": "^5.2.0",
     "mysql2": "^1.6.4",
     "nodemailer": "^4.7.0",
     "nodemon": "^1.18.6",
     "sequelize": "^4.41.2",
     "sinon": "^7.1.1",
+<<<<<<< HEAD
     "socket.io": "^2.1.1",
     "util": "^0.11.1",
+=======
+>>>>>>> aff0a02709443f62f153d56069b95f7fce83aee6
     "xoauth2": "^1.2.0"
   }
 }

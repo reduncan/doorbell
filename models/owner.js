@@ -9,7 +9,15 @@ module.exports = function(sequelize, DataTypes) {
         allowNull: false
       },
       phone_number: {
-        type: DataTypes.STRING(10),
+        type: DataTypes.STRING(30),
+        allowNull: false
+      },
+      email_address:{
+        type: DataTypes.STRING(30),
+        allowNull: false
+      },
+      email_password:{
+        type: DataTypes.STRING(30),
         allowNull: false
       }
     });
