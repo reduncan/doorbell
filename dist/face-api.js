@@ -5630,7 +5630,7 @@
 
     var FaceMatcher = /** @class */ (function () {
         function FaceMatcher(inputs, distanceThreshold) {
-            if (distanceThreshold === void 0) { distanceThreshold = 0.45; }
+            if (distanceThreshold === void 0) { distanceThreshold = 0.60; }
             this._distanceThreshold = distanceThreshold;
             var inputArray = Array.isArray(inputs) ? inputs : [inputs];
             if (!inputArray.length) {
@@ -5678,9 +5678,15 @@
         };
         FaceMatcher.prototype.findBestMatch = function (queryDescriptor) {
             var bestMatch = this.matchDescriptor(queryDescriptor);
-            return bestMatch.distance < this.distanceThreshold
-                ? bestMatch
-                : new FaceMatch('unknown', bestMatch.distance);
+            if(bestMatch.distance < this.distanceThreshold ){
+                return bestMatch;
+            }else{
+               return new FaceMatch('unknown', bestMatch.distance);
+                
+            }
+            // return bestMatch.distance < this.distanceThreshold  
+            //     ? bestMatch
+            //     : new FaceMatch('unknown', bestMatch.distance);
         };
         return FaceMatcher;
     }());
