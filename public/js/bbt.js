@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 const classes = ['ben','robert']
+=======
+const classes = ['ben','ming', 'robert']
+>>>>>>> aff0a02709443f62f153d56069b95f7fce83aee6
 
 function getFaceImageUri(className, idx) {
   return `${className}/${className}${idx}.jpeg`
