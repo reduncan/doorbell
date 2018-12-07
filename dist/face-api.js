@@ -5677,23 +5677,12 @@
                 .reduce(function (best, curr) { return best.distance < curr.distance ? best : curr; });
         };
         FaceMatcher.prototype.findBestMatch = function (queryDescriptor) {
-<<<<<<< HEAD
-            var bestMatch = this.matchDescriptor(queryDescriptor); 
-            return bestMatch.distance < this.distanceThreshold 
-                ? bestMatch
-                : new FaceMatch('unknown', bestMatch.distance);
-=======
             var bestMatch = this.matchDescriptor(queryDescriptor);
             if(bestMatch.distance < this.distanceThreshold ){
                 return bestMatch;
             }else{
-               return new FaceMatch('unknown', bestMatch.distance);
-                
+               return new FaceMatch('unknown', bestMatch.distance);     
             }
-            // return bestMatch.distance < this.distanceThreshold  
-            //     ? bestMatch
-            //     : new FaceMatch('unknown', bestMatch.distance);
->>>>>>> aff0a02709443f62f153d56069b95f7fce83aee6
         };
         return FaceMatcher;
     }());
