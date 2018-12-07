@@ -5677,8 +5677,8 @@
                 .reduce(function (best, curr) { return best.distance < curr.distance ? best : curr; });
         };
         FaceMatcher.prototype.findBestMatch = function (queryDescriptor) {
-            var bestMatch = this.matchDescriptor(queryDescriptor);
-            return bestMatch.distance < this.distanceThreshold
+            var bestMatch = this.matchDescriptor(queryDescriptor); 
+            return bestMatch.distance < this.distanceThreshold 
                 ? bestMatch
                 : new FaceMatch('unknown', bestMatch.distance);
         };
