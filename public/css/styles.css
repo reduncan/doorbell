@@ -9,12 +9,12 @@ canvas {
     height: 600px;
 }
 
-.hide {
-    display: none;
+button {
+  display: none;
 }
 
-.show {
-    display: contents;
+.hide {
+    display: none;
 }
 
 header {
@@ -47,6 +47,12 @@ span {
     font-size: 32px;
 }
 
+.success {
+  position: relative;
+  top: 250px;
+  text-align: center;
+}
+
 .success h3 {
     font-size: 24px;
     color: green;
@@ -56,6 +62,13 @@ span {
 .fa-check-circle {
     font-size: 200px;
     color: green;
+    margin-bottom: 15px;
+}
+
+.denied {
+  position: relative;
+  top: 250px;
+  text-align: center;
 }
 
 .denied h3 {
@@ -67,6 +80,7 @@ span {
 .fa-times-circle {
     font-size: 200px;
     color: red;
+    margin-bottom: 15px;
 }
 
 /* face recognition css */

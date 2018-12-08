@@ -62,18 +62,18 @@ $('body').keyup(function(event) {
   keypress = event.keyCode;
   if ( keypress === 13 || keypress === 32 ) {
     takePhoto();
-    // setTimeout(onTakePhotoButtonClick, 3000);
-    // setTimeout(autoCapture, 3000)
+    setTimeout(onTakePhotoButtonClick, 3000);
+    setTimeout(autoCapture, 3000)
   } 
 });
 
 const takePhoto = function () {
-  $('header').addClass('hide');
-  $('.ring').addClass('hide');
-  $('#face').addClass('show');
+  $('header').hide();
+  $('.ring').hide();
+  $('#face').show();
 };
 
 const autoCapture = function () {
-  $('#takePhotoButton').addClass('hide');
-  $('video').addClass('hide');
+  $('#takePhotoButton').hide();
+  $('video').hide();
 }
