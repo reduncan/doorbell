@@ -1,6 +1,6 @@
 //Photo capture
 const input = document.querySelector('input[type="range"]');
-
+let totalMatchFace = 0
 var imageCapture;
 
 navigator.mediaDevices.getUserMedia({ video: true })
@@ -32,7 +32,7 @@ function onTakePhotoButtonClick() {
     .then(imageBitmap => {
       drawCanvas(imageBitmap);
       console.log(`Photo size is ${imageBitmap.width}x${imageBitmap.height}`);
-      updateResults();
+      run();
     })
     .catch(error => console.log(error));
 }
@@ -60,18 +60,18 @@ $('body').keyup(function(event) {
   keypress = event.keyCode;
   if ( keypress === 13 || keypress === 32 ) {
     takePhoto();
-    // setTimeout(onTakePhotoButtonClick, 3000);
-    // setTimeout(autoCapture, 3000)
+    setTimeout(onTakePhotoButtonClick, 3000);
+    setTimeout(autoCapture, 3000)
   } 
 });
 
 const takePhoto = function () {
-  $('header').addClass('hide');
-  $('.ring').addClass('hide');
-  $('#face').addClass('show');
+  $('header').hide();
+  $('.ring').hide();
+  $('#face').show();
 };
 
 const autoCapture = function () {
-  $('video').addClass('hide');
-  $('#takePhotoButton').addClass('hide');
+  $('#takePhotoButton').hide();
+  $('video').hide();
 }
