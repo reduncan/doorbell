@@ -24,9 +24,9 @@ module.exports = {
 
   let mailOptions = {
     from: `${process.env.emailAdd}`,
-    to: `${process.env.emailAdd},${process.env.phoneNum}`,
-    subject: 'Facebell: You got a visitor!!',
-    text: "Please check your email and replay in the text message if you approve the visitor",
+    to: `${process.env.phoneNum}`,
+    subject: 'Facebell: You have a visitor!!',
+    text: "Replay to the message if you approve the visitor.",
     
     attachments: [{
       filename: 'visitor',
