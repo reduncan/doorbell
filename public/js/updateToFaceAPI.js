@@ -44,6 +44,7 @@ function drawFaceRecognitionResults(results) {
     $('.denied').show();
 
   } else {
+    $.ajax( {url: '/api/servo', method: "GET"});
     $('#face').hide();
     $('.success').show();
   }
