@@ -28,23 +28,28 @@ function drawFaceRecognitionResults(results) {
     )
   )
 
-  const approvedFaces = boxesWithText.filter(e => e._text.indexOf('unknown') !== 0
-  );
-  console.log(approvedFaces.length, boxesWithText.length);
+  const approvedFaces = boxesWithText.filter(e => e._text.indexOf('unknown') !== 0);
   if ((approvedFaces.length === 0 && boxesWithText.length !== 0) || boxesWithText.length === 0) {
-    $.ajax({ url: "/api/sendNodeMailer", method: "GET" }).then(
+    console.log('call ajax');
+    let canvas2 = $('#default').get(0);
+    let imgURL = canvas2.toDataURL();
+    const toSend = { imgSrc: `${imgURL}` };
+
+    $.ajax({ url: `/api/sendNodeMailer`, method: "PUT", data: toSend }).then(
       function (e) {
         console.log('-------get into face-api and trigger sendNodeMailer---------');
       }
     );
     $('#face').hide();
     $('.denied').show();
+
   } else {
     $('#face').hide();
     $('.success').show();
   }
 
   faceapi.drawDetection(canvas, boxesWithText)
+
 }
 
 async function run() {
