@@ -22,7 +22,7 @@ app.use(express.static(path.join(__dirname, './weights')));
 app.use(express.static(path.join(__dirname, './dist')));
 app.use(express.static(path.join(__dirname, './nodemailer')));
 
-// require('./sockets/auth-sockets')(io);
+
 require('./routes/api-routes.js')(app);
 require('./routes/html-routes.js')(app);
 
