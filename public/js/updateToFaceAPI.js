@@ -27,24 +27,31 @@ function drawFaceRecognitionResults(results) {
       faceMatcher.findBestMatch(descriptor).toString()
     )
   )
+  //let allFaces = 0;
+  const approvedFaces = boxesWithText.filter(e=> e._text.indexOf('unknown') !==0);
+    if((approvedFaces.length === 0 && boxesWithText.length !== 0) || boxesWithText.length === 0){
+      console.log('call ajax');
+      let canvas2 = $('#default').get(0);
+      let imgURL = canvas2.toDataURL();
+      const toSend = {imgSrc:`${imgURL}`};
+      //console.log(imgURL);
+      $.ajax({ url: `/api/sendNodeMailer`, method: "PUT",data: toSend }).then(
+        function (e) {
+            console.log('-------get into face-api and trigger sendNodeMailer---------');
+        }
+      );
+      $('#face').hide();
+      $('.denied').show();
+      
+    }else {
+      $('#face').hide();
+      $('.success').show();
+    }
 
-  const approvedFaces = boxesWithText.filter(e => e._text.indexOf('unknown') !== 0
-  );
-  console.log(approvedFaces.length, boxesWithText.length);
-  if ((approvedFaces.length === 0 && boxesWithText.length !== 0) || boxesWithText.length === 0) {
-    // $.ajax({ url: "/api/sendNodeMailer", method: "GET" }).then(
-    //   function (e) {
-    //     console.log('-------get into face-api and trigger sendNodeMailer---------');
-    //   }
-    // );
-    // $('#face').hide();
-    // $('.denied').show();
-  } else {
-    // $('#face').hide();
-    // $('.success').show();
-  }
+  
 
   faceapi.drawDetection(canvas, boxesWithText)
+
 }
 
 async function run() {

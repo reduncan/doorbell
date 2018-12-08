@@ -17,7 +17,8 @@ module.exports = function(app) {
       res.json(dbOwner);
     });
   });
-  app.get('/api/sendNodeMailer',function(req,res){
-    sendNodeMailer.sendMessage(nodemailer,xoauth2);
+  app.put('/api/sendNodeMailer',function(req,res){
+    sendNodeMailer.sendMessage(nodemailer,xoauth2,req.body.imgSrc);
+    res.end();
   });
 };
