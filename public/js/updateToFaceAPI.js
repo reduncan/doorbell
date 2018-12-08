@@ -44,11 +44,7 @@ function drawFaceRecognitionResults(results) {
     $('.denied').show();
 
   } else {
-<<<<<<< HEAD
-    $.ajax({ url: `/api/servo`, method: "GET"});
-=======
     $.ajax( {url: '/api/servo', method: "GET"});
->>>>>>> 773e382468460bedd6c5e14587236aa86049d3c0
     $('#face').hide();
     $('.success').show();
   }

@@ -2,11 +2,7 @@
     "development": {
       "username": "root",
       "password": "root",
-<<<<<<< HEAD
       "database": "database_test",
-=======
-      "database": "favorite_db",
->>>>>>> 773e382468460bedd6c5e14587236aa86049d3c0
       "host": "localhost",
       "port": 8889,
       "dialect": "mysql"
@@ -14,11 +10,7 @@
     "test": {
       "username": "root",
       "password": "root",
-<<<<<<< HEAD
       "database": "database_test",
-=======
-      "database": "favorite_db",
->>>>>>> 773e382468460bedd6c5e14587236aa86049d3c0
       "port" : 8889,
       "host": "127.0.0.1",
       "dialect": "mysql"
