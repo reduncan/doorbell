@@ -1,5 +1,5 @@
 //remove this line when pushing to full version
-process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
+//process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
 
 /////////////receiving Email
 var five = require("johnny-five");
@@ -88,7 +88,7 @@ imap.on('mail', function(mail) {
                 console.log(authKey);
               }
 
-              if(authKey === '4048634232@txt.att.net') {
+              if(authKey === `${process.env.phoneNum}`) {
                 turnServo();
               }
 
