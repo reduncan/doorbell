@@ -2,8 +2,7 @@ const db = require('../models');
 const nodemailer = require('nodemailer');
 const xoauth2 = require('xoauth2');
 const sendNodeMailer =  require('../nodemailer/sendMessage.js');
-const servo = require('../public/js/auth-receiver.js')
-module.exports = function(app) {
+module.exports = function(app, servo) {
 
   app.get('/api/visitors', function(req, res) {
     db.Visitor.findAll({}).then(function(dbVisitors) {
@@ -18,11 +17,16 @@ module.exports = function(app) {
       res.json(dbOwner);
     });
   });
+
   app.put('/api/sendNodeMailer',function(req,res){
     sendNodeMailer.sendMessage(nodemailer,xoauth2,req.body.imgSrc);
     res.end();
   });
+  
   app.get('/api/servo', function(req,res){
-    servo.turnServo();
+    servo.max();
+    setTimeout(() => {
+        servo.center();
+    }, 1500);
   });
 };

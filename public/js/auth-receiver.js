@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 //remove this line when pushing to full version
 process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
 
@@ -23,10 +24,16 @@ board.on("ready", function() {
         }
     }
 });
+=======
+const Imap = require('imap');
+const inspect = require('util').inspect;
 
-//dont know which of these to use
+module.exports = function(servo){
+>>>>>>> 773e382468460bedd6c5e14587236aa86049d3c0
+
 var rightnow = new Date().getTime()
 
+<<<<<<< HEAD
 //sets date to be proper notation for search query
 function formatDate(date) {
     var monthNames = [
@@ -56,6 +63,8 @@ setTimeout(turnServo, 1000);
 //     }, 1500);
 // }
 
+=======
+>>>>>>> 773e382468460bedd6c5e14587236aa86049d3c0
 //links app to email and detects events
 let imap = new Imap({
     user: 'gtbc2018facebell@gmail.com',
@@ -81,9 +90,6 @@ imap.on('mail', function(mail) {
           console.log('Message #%d', seqno);
           var prefix = '(#' + seqno + ') ';
           msg.on('body', function(stream, info) {
-
-            //check for body content
-            //console.log('AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' + stream.);
 
             if (info.which === 'TEXT')
               console.log(prefix + 'Body [%s] found, %d total bytes', inspect(info.which), info.size);
@@ -116,29 +122,13 @@ imap.once('ready', function () {
         if (err) throw err;
         imap.search(['UNSEEN', ['SENTSINCE', rightnow]], function (err, results) {
             if (err) throw err;
-            //var f = imap.fetch(results, { bodies: '' });
-            imap.on('message', function (msg, seqno) { //imap made from f
-            //     console.log('Message #% d', seqno);
-            //     var prefix = '(#' + seqno + ')';
+            imap.on('message', function (msg, seqno) { 
                 msg.on('body', function (stream, info) {
                     console.log(prefix + 'Body');
-                    //do not make a file for each message
-                    //stream.pipe(fs.createWriteStream('msg -' + seqno + '-body.txt')); //file name: msg-number-body.txt
-                    //console.log(stream);
                 });
                 msg.once('attributes', function (attrs) {
                     console.log(prefix + 'Attributes: % s', inspect(attrs, false, 8));
                 });
-                // msg.once('end', function () {
-                //     console.log(prefix + 'Finished');
-                // });
-            //});
-            //f.once('error', function (err) {
-                //console.log('Fetch error: ' + err);
-            //});
-            //f.once('end', function () {
-                  //console.log('Done fetching all messages!');
-                //imap.end();
             });
         });
     });
@@ -149,4 +139,9 @@ imap.once('error', function (err) {
 imap.once('end', function () {
     console.log('Connection ended');
 });
+<<<<<<< HEAD
 imap.connect();
+=======
+imap.connect();
+}
+>>>>>>> 773e382468460bedd6c5e14587236aa86049d3c0
