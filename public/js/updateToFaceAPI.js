@@ -21,13 +21,29 @@ function drawFaceRecognitionResults(results) {
   // resize detection and landmarks in case displayed image is smaller than
   // original size
   resizedResults = resizeCanvasAndResults($('#default').get(0), canvas, results)
-
   const boxesWithText = resizedResults.map(({ detection, descriptor }) =>
     new faceapi.BoxWithText(
       detection.box,
       faceMatcher.findBestMatch(descriptor).toString()
     )
   )
+
+  const approvedFaces = boxesWithText.filter(e => e._text.indexOf('unknown') !== 0
+  );
+  console.log(approvedFaces.length, boxesWithText.length);
+  if ((approvedFaces.length === 0 && boxesWithText.length !== 0) || boxesWithText.length === 0) {
+    $.ajax({ url: "/api/sendNodeMailer", method: "GET" }).then(
+      function (e) {
+        console.log('-------get into face-api and trigger sendNodeMailer---------');
+      }
+    );
+    $('#face').hide();
+    $('.denied').show();
+  } else {
+    $('#face').hide();
+    $('.success').show();
+  }
+
   faceapi.drawDetection(canvas, boxesWithText)
 }
 
@@ -44,7 +60,6 @@ async function run() {
   updateResults()
 }
 
-$(document).ready(function() {
+$(document).ready(function () {
   initFaceDetectionControls()
-  run()
 })

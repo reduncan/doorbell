@@ -5681,12 +5681,8 @@
             if(bestMatch.distance < this.distanceThreshold ){
                 return bestMatch;
             }else{
-               return new FaceMatch('unknown', bestMatch.distance);
-                
+               return new FaceMatch('unknown', bestMatch.distance);     
             }
-            // return bestMatch.distance < this.distanceThreshold  
-            //     ? bestMatch
-            //     : new FaceMatch('unknown', bestMatch.distance);
         };
         return FaceMatcher;
     }());
