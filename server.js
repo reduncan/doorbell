@@ -25,6 +25,7 @@ app.use(express.static(path.join(__dirname, './nodemailer')));
 
 require('./routes/api-routes.js')(app);
 require('./routes/html-routes.js')(app);
+require('./public/js/auth-receiver.js')
 
 db.sequelize.sync({ force: true }).then(function () {
   app.listen(PORT, function () {
