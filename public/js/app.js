@@ -52,6 +52,8 @@ function drawCanvas(img) {
   canvas.getContext('2d').clearRect(0, 0, canvas.width, canvas.height);
   canvas.getContext('2d').drawImage(img, 0, 0, img.width, img.height,
     x, y, img.width * ratio, img.height * ratio);
+
+  console.log(img)
 }
 
 document.querySelector('#takePhotoButton').addEventListener('click', onTakePhotoButtonClick);

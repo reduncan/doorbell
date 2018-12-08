@@ -31,7 +31,7 @@ function drawFaceRecognitionResults(results) {
   const approvedFaces = boxesWithText.filter(e=> e._text.indexOf('unknown') !==0
     );
    console.log(approvedFaces.length, boxesWithText.length);
-  if((approvedFaces.length === 0 && boxesWithText.length !==0) || boxesWithText.length ===0 ){
+  if((approvedFaces.length === 0 && boxesWithText.length !==0) || boxesWithText.length === 0 ){
     console.log('Disapprove');
     // $.ajax({ url: "/api/sendNodeMailer", method: "GET" }).then(
     //     function (e) {
