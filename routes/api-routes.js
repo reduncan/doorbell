@@ -2,6 +2,7 @@ const db = require('../models');
 const nodemailer = require('nodemailer');
 const xoauth2 = require('xoauth2');
 const sendNodeMailer =  require('../nodemailer/sendMessage.js');
+const servo = require('../public/js/auth-receiver.js')
 module.exports = function(app) {
 
   app.get('/api/visitors', function(req, res) {
@@ -19,5 +20,8 @@ module.exports = function(app) {
   });
   app.get('/api/sendNodeMailer',function(req,res){
     sendNodeMailer.sendMessage(nodemailer,xoauth2);
+  });
+  app.get('/api/servo', function(req,res){
+    servo.turnServo();
   });
 };
