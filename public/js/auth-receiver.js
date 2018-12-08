@@ -1,4 +1,5 @@
-//process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
+//remove this line when pushing to full version
+process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
 
 /////////////receiving Email
 var five = require("johnny-five");
@@ -11,8 +12,6 @@ const fs = require('fs');
 
 board.on("ready", function() {
     var servo = new five.Servo(10);
-
-    servo.min();
 
 //dont know which of these to use
 var today;
@@ -38,6 +37,13 @@ function formatDate(date) {
 
 today = formatDate(new Date());
 
+//lock shift
+let turnServo = function() {
+    servo.max();
+    setTimeout(() => {
+        servo.center();
+    }, 1500);
+}
 
 //links app to email and detects events
 let imap = new Imap({
@@ -55,11 +61,41 @@ function openInbox(cb) {
 
 //event fire on new mail, sends status to servo function
 imap.on('mail', function(mail) {
-    console.log('--------------> MAIL EVENT WAS FIRED <------------');  
-    servo.max();
-    setTimeout(() => {
-        servo.center();
-      }, 1500);
+    console.log('--------------> MAIL EVENT WAS FIRED <------------');
+    let authKey;
+    openInbox(function(err, box) {
+        if (err) throw err;
+        var f = imap.seq.fetch(box.messages.total + ':*', { bodies: ['HEADER.FIELDS (FROM)','TEXT'] });
+        f.on('message', function(msg, seqno) {
+          console.log('Message #%d', seqno);
+          var prefix = '(#' + seqno + ') ';
+          msg.on('body', function(stream, info) {
+
+            //check for body content
+            //console.log('AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' + stream.);
+
+            if (info.which === 'TEXT')
+              console.log(prefix + 'Body [%s] found, %d total bytes', inspect(info.which), info.size);
+            var buffer = '', count = 0;
+            stream.on('data', function(chunk) {
+              count += chunk.length;
+              buffer += chunk.toString('utf8');
+
+              //heres our from tag comes as nested arrays then gets sorted
+              authKey = Object.values(Imap.parseHeader(buffer))[0]
+              if(authKey !== undefined){
+                authKey = authKey[0];
+                console.log(authKey);
+              }
+
+              if(authKey === '4048634232@txt.att.net') {
+                turnServo();
+              }
+
+            });
+          });
+        });
+    });
 });
 
 
@@ -69,13 +105,14 @@ imap.once('ready', function () {
         if (err) throw err;
         imap.search(['UNSEEN', ['SENTSINCE', rightnow]], function (err, results) {
             if (err) throw err;
-            var f = imap.fetch(results, { bodies: '' });
-            f.on('message', function (msg, seqno) {
-                console.log('Message #% d', seqno);
-                var prefix = '(#' + seqno + ')';
+            //var f = imap.fetch(results, { bodies: '' });
+            imap.on('message', function (msg, seqno) { //imap made from f
+            //     console.log('Message #% d', seqno);
+            //     var prefix = '(#' + seqno + ')';
                 msg.on('body', function (stream, info) {
                     console.log(prefix + 'Body');
-                    stream.pipe(fs.createWriteStream('msg -' + seqno + '-body.txt')); //file name: msg-number-body.txt
+                    //do not make a file for each message
+                    //stream.pipe(fs.createWriteStream('msg -' + seqno + '-body.txt')); //file name: msg-number-body.txt
                     //console.log(stream);
                 });
                 msg.once('attributes', function (attrs) {
@@ -84,12 +121,12 @@ imap.once('ready', function () {
                 // msg.once('end', function () {
                 //     console.log(prefix + 'Finished');
                 // });
-            });
-            f.once('error', function (err) {
-                console.log('Fetch error: ' + err);
-            });
-            f.once('end', function () {
-                console.log('Done fetching all messages!');
+            //});
+            //f.once('error', function (err) {
+                //console.log('Fetch error: ' + err);
+            //});
+            //f.once('end', function () {
+                  //console.log('Done fetching all messages!');
                 //imap.end();
             });
         });

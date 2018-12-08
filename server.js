@@ -20,7 +20,6 @@ app.use(express.static(path.join(__dirname, './dist')));
 
 
 // require('./sockets/auth-sockets')(io);
-<<<<<<< HEAD
  require('./routes/api-routes.js')(app);
 // require('./routes/html-routes.js')(app);
  require('./public/js/auth-receiver.js');
@@ -32,15 +31,5 @@ db.sequelize.sync({ force: false }).then(function() {
     });
 }).catch(function(err){
   console.log("An error occurred")
-=======
-//require('./nodemailer/sendMessage.js')(nodemailer,xoauth2);
-require('./routes/api-routes.js')(app);
-require('./routes/html-routes.js')(app);
-
-db.sequelize.sync({ force: true }).then(function () {
-  app.listen(PORT, function () {
-    console.log("App listening on PORT " + PORT);
-  });
->>>>>>> aff0a02709443f62f153d56069b95f7fce83aee6
 })
 
