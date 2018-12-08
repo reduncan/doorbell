@@ -37,11 +37,11 @@ function drawFaceRecognitionResults(results) {
     //     console.log('-------get into face-api and trigger sendNodeMailer---------');
     //   }
     // );
-    $('#face').hide();
-    $('.denied').show();
+    // $('#face').hide();
+    // $('.denied').show();
   } else {
-    $('#face').hide();
-    $('.success').show();
+    // $('#face').hide();
+    // $('.success').show();
   }
 
   faceapi.drawDetection(canvas, boxesWithText)
