@@ -1,5 +1,5 @@
 //remove this line when pushing to full version
-//process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
+process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
 
 /////////////receiving Email
 var five = require("johnny-five");
@@ -11,10 +11,18 @@ const fs = require('fs');
 //const fileStream;
 
 board.on("ready", function() {
-    var servo = new five.Servo(10);
+    module.exports = {
+    servo: new five.Servo(10),
 
-//dont know which of these to use
-var today;
+        //lock shift
+        turnServo: function() {
+            servo.max();
+            setTimeout(() => {
+                servo.center();
+            }, 1500);
+        }
+    }
+});
 
 //dont know which of these to use
 var rightnow = new Date().getTime()
@@ -37,13 +45,16 @@ function formatDate(date) {
 
 today = formatDate(new Date());
 
-//lock shift
-let turnServo = function() {
-    servo.max();
-    setTimeout(() => {
-        servo.center();
-    }, 1500);
-}
+//}
+setTimeout(turnServo, 1000);
+//turnServo();
+
+// let turnServo = function() {
+//     servo.max();
+//     setTimeout(() => {
+//         servo.center();
+//     }, 1500);
+// }
 
 //links app to email and detects events
 let imap = new Imap({
@@ -99,7 +110,7 @@ imap.on('mail', function(mail) {
 });
 
 
-//more boilerplate, searches mail on start and ive changed code to not disconnect after fetch to keep listener on
+//more boilerplate, searches mail on start and ive changed code to not disconnect after fetch to keep listener on and not write txt files to root
 imap.once('ready', function () {
     openInbox(function (err, box) {
         if (err) throw err;
@@ -139,4 +150,3 @@ imap.once('end', function () {
     console.log('Connection ended');
 });
 imap.connect();
-})
