@@ -28,18 +28,20 @@ function drawFaceRecognitionResults(results) {
     )
   )
 
-  const approvedFaces = boxesWithText.filter(e=> e._text.indexOf('unknown') !==0
+  const approvedFaces = boxesWithText.filter(e => e._text.indexOf('unknown') !== 0
+  );
+  console.log(approvedFaces.length, boxesWithText.length);
+  if ((approvedFaces.length === 0 && boxesWithText.length !== 0) || boxesWithText.length === 0) {
+    $.ajax({ url: "/api/sendNodeMailer", method: "GET" }).then(
+      function (e) {
+        console.log('-------get into face-api and trigger sendNodeMailer---------');
+      }
     );
-   console.log(approvedFaces.length, boxesWithText.length);
-  if((approvedFaces.length === 0 && boxesWithText.length !==0) || boxesWithText.length ===0 ){
-    console.log('Disapprove');
-    // $.ajax({ url: "/api/sendNodeMailer", method: "GET" }).then(
-    //     function (e) {
-    //           console.log('-------get into face-api and trigger sendNodeMailer---------');
-    //       }
-    //     );
-  }else {
-        console.log('approve');   
+    $('#face').hide();
+    $('.denied').show();
+  } else {
+    $('#face').hide();
+    $('.success').show();
   }
 
   faceapi.drawDetection(canvas, boxesWithText)
@@ -58,6 +60,6 @@ async function run() {
   updateResults()
 }
 
-$(document).ready(function() {
+$(document).ready(function () {
   initFaceDetectionControls()
 })
