@@ -1,12 +1,13 @@
 ///////////////////Ming/////////////////////////
 //AT&T: number@mms.att.net
 //Verizon: number@vzwpix.com
+//T-Mobile: number@tmomail.net
 // const nodemailer = require('nodemailer');
 // const xoauth2 = require('xoauth2');
 require('dotenv').config();
 
 module.exports = {
-  sendMessage: function (nodemailer, xoauth2) {
+  sendMessage: function (nodemailer, xoauth2,imgURL) {
   let transporter = nodemailer.createTransport(
     {
       service: 'gmail',
@@ -22,16 +23,18 @@ module.exports = {
       }
     }
   );
-
+  console.log('------------------------');
+  console.log(imgURL);
   let mailOptions = {
     from: `${process.env.emailAdd}`,
     to: `${process.env.emailAdd},${process.env.phoneNum}`,
     subject: 'Facebell: You got a visitor!!',
-    text: "1Please check your email and replay in the text message if approve the visitor",
-    //html only works for web page
+    text: "Please check your email and replay in the text message in cell phone if approve the visitor",
     
-    html: 'Embedded image: <img src="https://images.unsplash.com/photo-1518791841217-8f162f1e1131?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=2d7b1bd980752bb3ea0a259f528eae78&w=1000&q=80"/>',
-    //html: 'Embedded image: <img src="https://images.unsplash.com/photo-1518791841217-8f162f1e1131?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=2d7b1bd980752bb3ea0a259f528eae78&w=1000&q=80"/>',
+    attachments: [{
+      filename: 'visitor',
+      path: `${imgURL}`
+    }]
   };
 
   transporter.sendMail(mailOptions, function (error, info) {
@@ -42,5 +45,7 @@ module.exports = {
     }
     transporter.close();
   });
+ 
+  
 }
 }
