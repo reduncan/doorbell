@@ -27,17 +27,19 @@ function drawFaceRecognitionResults(results) {
       faceMatcher.findBestMatch(descriptor).toString()
     )
   )
-  //let allFaces = 0;
-  const allFaces = boxesWithText.filter(e=> e._text.indexOf('unknown') !==0
+
+  const approvedFaces = boxesWithText.filter(e=> e._text.indexOf('unknown') !==0
     );
-   console.log(allFaces.length, boxesWithText.length);
-  if(allFaces.length === 0 && boxesWithText.length !==0){
-    console.log('call ajax');
-    $.ajax({ url: "/api/sendNodeMailer", method: "GET" }).then(
-      function (e) {
-          console.log('-------get into face-api and trigger sendNodeMailer---------');
-      }
-  );
+   console.log(approvedFaces.length, boxesWithText.length);
+  if((approvedFaces.length === 0 && boxesWithText.length !==0) || boxesWithText.length ===0 ){
+    console.log('Disapprove');
+    // $.ajax({ url: "/api/sendNodeMailer", method: "GET" }).then(
+    //     function (e) {
+    //           console.log('-------get into face-api and trigger sendNodeMailer---------');
+    //       }
+    //     );
+  }else {
+        console.log('approve');   
   }
 
   faceapi.drawDetection(canvas, boxesWithText)
@@ -58,5 +60,4 @@ async function run() {
 
 $(document).ready(function() {
   initFaceDetectionControls()
-  run()
 })

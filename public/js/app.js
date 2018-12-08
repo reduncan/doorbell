@@ -1,6 +1,6 @@
 //Photo capture
 const input = document.querySelector('input[type="range"]');
-
+let totalMatchFace = 0
 var imageCapture;
 
 navigator.mediaDevices.getUserMedia({ video: true })
@@ -32,7 +32,7 @@ function onTakePhotoButtonClick() {
     .then(imageBitmap => {
       drawCanvas(imageBitmap);
       console.log(`Photo size is ${imageBitmap.width}x${imageBitmap.height}`);
-      updateResults();
+      run();
     })
     .catch(error => console.log(error));
 }
@@ -72,6 +72,6 @@ const takePhoto = function () {
 };
 
 const autoCapture = function () {
-  $('video').addClass('hide');
   $('#takePhotoButton').addClass('hide');
+  $('video').addClass('hide');
 }
