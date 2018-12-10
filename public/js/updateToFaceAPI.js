@@ -35,16 +35,16 @@ function drawFaceRecognitionResults(results) {
     let imgURL = canvas2.toDataURL();
     const toSend = { imgSrc: `${imgURL}` };
 
-    $.ajax({ url: `/api/sendNodeMailer`, method: "PUT", data: toSend }).then(
-      function (e) {
-        console.log('-------get into face-api and trigger sendNodeMailer---------');
-      }
-    );
+    // $.ajax({ url: `/api/sendNodeMailer`, method: "PUT", data: toSend }).then(
+    //   function (e) {
+    //     console.log('-------get into face-api and trigger sendNodeMailer---------');
+    //   }
+    // );
     $('#face').hide();
     $('.denied').show();
 
   } else {
-    $.ajax( {url: '/api/servo', method: "GET"});
+    // $.ajax( {url: '/api/servo', method: "GET"});
     $('#face').hide();
     $('.success').show();
   }
