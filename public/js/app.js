@@ -24,14 +24,13 @@ navigator.mediaDevices.getUserMedia({ video: true })
   .then(photoSettings => {
     input.value = photoSettings.imageWidth;
   })
-  .catch(error => console.log('Argh!', error.name || error));
+  .catch(error => console.log(error.name || error));
 
 function onTakePhotoButtonClick() {
   imageCapture.takePhoto({ imageWidth: input.value })
     .then(blob => createImageBitmap(blob))
     .then(imageBitmap => {
       drawCanvas(imageBitmap);
-      console.log(`Photo size is ${imageBitmap.width}x${imageBitmap.height}`);
       run();
     })
     .catch(error => console.log(error));

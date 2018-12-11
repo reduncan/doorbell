@@ -36,9 +36,7 @@ function drawFaceRecognitionResults(results) {
     const toSend = { imgSrc: `${imgURL}` };
 
     $.ajax({ url: `/api/sendNodeMailer`, method: "PUT", data: toSend }).then(
-      function (e) {
-        console.log('-------get into face-api and trigger sendNodeMailer---------');
-      }
+      function (e) {}
     );
     $('#face').hide();
     $('.denied').show();
