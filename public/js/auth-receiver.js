@@ -4,7 +4,10 @@ const inspect = require('util').inspect;
 
 module.exports = function (servo) {
 
-    var rightnow = new Date().getTime()
+    var state = {
+        rightnow: new Date(),
+        mailTick: 0
+    }
 
     //links app to email and detects events
     let imap = new Imap({
@@ -46,7 +49,8 @@ module.exports = function (servo) {
                             console.log(authKey);
                         }
 
-                        if (authKey === `${process.env.phoneNum}`) {
+                        if (authKey === `${process.env.phoneNum}` && state.mailTick <= 1) {
+                            state.mailTick++;
                             servo.max();
                             setTimeout(() => {
                                 servo.center();
@@ -64,7 +68,7 @@ module.exports = function (servo) {
     imap.once('ready', function () {
         openInbox(function (err, box) {
             if (err) throw err;
-            imap.search(['UNSEEN', ['SENTSINCE', rightnow]], function (err, results) {
+            imap.search(['UNSEEN', ['SENTSINCE', state.rightnow.getTime()]], function (err, results) {
                 if (err) throw err;
                 imap.on('message', function (msg, seqno) {
                     msg.on('body', function (stream, info) {
