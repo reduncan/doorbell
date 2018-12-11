@@ -26,7 +26,7 @@ module.exports = {
     from: `${process.env.emailAdd}`,
     to: `${process.env.emailAdd},${process.env.phoneNum}`,
     subject: 'Facebell: You got a visitor!!',
-    text: "Please check your email and replay in the text message if you approve the visitor",
+    text: "Please check your email and reply in the text message if you approve the visitor",
     
     attachments: [{
       filename: 'visitor',
