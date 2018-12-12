@@ -30,22 +30,17 @@ function drawFaceRecognitionResults(results) {
 
   const approvedFaces = boxesWithText.filter(e => e._text.indexOf('unknown') !== 0);
   if ((approvedFaces.length === 0 && boxesWithText.length !== 0) || boxesWithText.length === 0) {
-    console.log('call ajax');
     let canvas2 = $('#default').get(0);
     let imgURL = canvas2.toDataURL();
     const toSend = { imgSrc: `${imgURL}` };
-
     $.ajax({ url: `/api/sendNodeMailer`, method: "PUT", data: toSend }).then(
-      function (e) {
-        console.log('-------get into face-api and trigger sendNodeMailer---------');
-      }
+      function (e) {}
     );
-    $('#face').hide();
+    $('.lds-ellipsis').hide();
     $('.denied').show();
 
   } else {
-    $.ajax( {url: '/api/servo', method: "GET"});
-    $('#face').hide();
+    $('.lds-ellipsis').hide();
     $('.success').show();
   }
 
@@ -55,6 +50,7 @@ function drawFaceRecognitionResults(results) {
 
 async function run() {
   // load face detection, face landmark model and face recognition models
+
   await changeFaceDetector(selectedFaceDetector)
   await faceapi.loadFaceLandmarkModel('/')
   await faceapi.loadFaceRecognitionModel('/')
