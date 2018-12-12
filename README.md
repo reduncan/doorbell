@@ -59,6 +59,9 @@ Looking to get started with Pull Request? Feel free to add a few pictures of you
   * handled the DOM manipulation functions for our app
 
 * **Ben Nguyen** - 
+ * Implement face-api into app.
+ * Created a function to run capture image through face-api for face recognition.
+ * Created a function to use stored images as default photo for the face recognition. 
 
 * **Ming Shiuan Tsai** - 
 
