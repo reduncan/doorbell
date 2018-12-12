@@ -66,6 +66,9 @@ Looking to get started with Pull Request? Feel free to add a few pictures of you
 * **Ming Shiuan Tsai** - 
 
 * **Weston Dease** - 
+ * Created file to set up imap email monitoring with validation on new email.
+ * Created file to turn motor on approved user.
+ * Created template for api/routes for database models (deprecated) as well as api/route for motor turn.
 
 ## License
 
