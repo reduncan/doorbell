@@ -35,9 +35,7 @@ function drawFaceRecognitionResults(results) {
     let imgURL = canvas2.toDataURL();
     const toSend = { imgSrc: `${imgURL}` };
     $.ajax({ url: `/api/sendNodeMailer`, method: "PUT", data: toSend }).then(
-      function (e) {
-        console.log('-------get into face-api and trigger sendNodeMailer---------');
-      }
+      function (e) {}
     );
     $('.lds-ellipsis').hide();
     $('.denied').show();
