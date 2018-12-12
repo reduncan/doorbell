@@ -1,6 +1,7 @@
-//process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
+// process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
 const Imap = require('imap');
 const inspect = require('util').inspect;
+require('dotenv').config();
 
 module.exports = function (servo) {
 
@@ -49,8 +50,8 @@ module.exports = function (servo) {
                             console.log(authKey);
                         }
 
-                        if (authKey === `${process.env.phoneNum}` && state.mailTick <= 1) {
-                            state.mailTick++;
+                        if (authKey === `${process.env.phoneNum}`) {
+                            // state.mailTick++;
                             servo.max();
                             setTimeout(() => {
                                 servo.center();
