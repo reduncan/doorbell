@@ -22,12 +22,18 @@
 </head>
 
 <body>
+        <div class="progress1" id="loader1">
+            <div style="position: relative" class="margin">
+                    <canvas id="default"></canvas>
+                    <canvas id="defaultOverlay" class="overlay hide" />
+                </div>
+                <div class="indeterminate"></div>
+            </div>Create
+            <div class="lds-ellipsis hide"><div></div><div></div><div></div><div></div></div>
+
     <header class="center">
         <h1>faceBell</h1>
     </header>
-    <div class="progress" id="loader">
-        <div class="indeterminate"></div>
-    </div>
     <main class="center">
         <div class="ring">
             <h2>press the <span>SPACE</span> key or <span>ENTER</span> key to gain access</h2>
@@ -36,10 +42,6 @@
             <video autoplay></video>
             <input type="range" class="hide">
             <button id="takePhotoButton" disabled>Take Photo</button>
-             <div style="position: relative" class="margin">
-        <canvas id="default"></canvas>
-        <canvas id="defaultOverlay" class="overlay" />
-    </div>
         </div>
 
         <div class="success hide">

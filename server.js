@@ -26,6 +26,8 @@ app.use(express.static(path.join(__dirname, './weights')));
 app.use(express.static(path.join(__dirname, './dist')));
 app.use(express.static(path.join(__dirname, './nodemailer')));
 
+
+
 board.on("ready", function () {
   var servo = new five.Servo(10);
   require('./public/js/auth-receiver')(servo, io);
