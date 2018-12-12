@@ -1,14 +1,18 @@
+//process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
 const Imap = require('imap');
 const inspect = require('util').inspect;
 
 module.exports = function (servo) {
 
-    var rightnow = new Date().getTime()
+    var state = {
+        rightnow: new Date(),
+        mailTick: 0
+    }
 
     //links app to email and detects events
     let imap = new Imap({
-        user: 'gtbc2018facebell@gmail.com',
-        password: '!2018facebell',
+        user: `${process.env.emailAdd}`,
+        password: `${process.env.emailPW}`,
         host: 'imap.gmail.com',
         port: 993,
         tls: true
@@ -45,7 +49,8 @@ module.exports = function (servo) {
                             console.log(authKey);
                         }
 
-                        if (authKey === `${process.env.phoneNum}`) {
+                        if (authKey === `${process.env.phoneNum}` && state.mailTick <= 1) {
+                            state.mailTick++;
                             servo.max();
                             setTimeout(() => {
                                 servo.center();
@@ -59,11 +64,11 @@ module.exports = function (servo) {
     });
 
 
-    //more boilerplate, searches mail on start and ive changed code to not disconnect after fetch to keep listener on
+    //more boilerplate, searches mail on start and ive changed code to not disconnect after fetch to keep listener on and not write txt files to root
     imap.once('ready', function () {
         openInbox(function (err, box) {
             if (err) throw err;
-            imap.search(['UNSEEN', ['SENTSINCE', rightnow]], function (err, results) {
+            imap.search(['UNSEEN', ['SENTSINCE', state.rightnow.getTime()]], function (err, results) {
                 if (err) throw err;
                 imap.on('message', function (msg, seqno) {
                     msg.on('body', function (stream, info) {
