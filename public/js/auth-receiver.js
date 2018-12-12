@@ -1,11 +1,7 @@
 // process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
 const Imap = require('imap');
 const inspect = require('util').inspect;
-<<<<<<< HEAD
-require('dotenv').config();
-=======
 // const io = require('../../sockets/auth-sockets');
->>>>>>> 5f25a200fa599dfbd156c5d60e91a32a3d34b292
 
 module.exports = function (servo, io) {
     console.log("about to send the emit unlock")
@@ -55,17 +51,12 @@ module.exports = function (servo, io) {
                             console.log(authKey);
                         }
 
-<<<<<<< HEAD
-                        if (authKey === `${process.env.phoneNum}`) {
-                            // state.mailTick++;
-=======
                         if (state.mailTick === 0) {
                             state.mailTick++;
                         }
 
                         if (authKey === `${process.env.phoneNum}` && state.mailTick === 1) {
                             state.mailTick++;
->>>>>>> 5f25a200fa599dfbd156c5d60e91a32a3d34b292
                             servo.max();
                         
                         
