@@ -28,6 +28,7 @@ If you want to duplicate our project exactly you will need to also have a single
 To get started you will need to fork the repository and clone into the repository on your machine. Once you have cloned the repository you will need to run `npm install` to install of the needed packages to run the app. After you hav installed the needed packages you will need to set up a .env file on your machine. The .env file will house the information for you preferred email provider. The .env file should contain the following variables:
 
 * emailAdd
+* emailPW
 * phoneNum
 * clientID
 * clientSecret
@@ -64,6 +65,9 @@ Looking to get started with Pull Request? Feel free to add a few pictures of you
  * Created a function to use store images as default photo for the face recognition. 
  
 * **Ming Shiuan Tsai** - 
+ * set up testing gmail for group test
+ * implement nodemailer
+ * export function which sends MMS message and modify related function logic 
 
 * **Weston Dease** - 
 
