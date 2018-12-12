@@ -1,3 +1,5 @@
+const socket = io();
+
 //Photo capture
 const input = document.querySelector('input[type="range"]');
 let totalMatchFace = 0
@@ -74,3 +76,9 @@ const autoCapture = function () {
   $('#takePhotoButton').hide();
   $('video').hide();
 }
+
+socket.on('emit-unlock', function () {
+  console.log("I got the io")
+  $('.denied').hide();
+  $('.success').show();
+});
