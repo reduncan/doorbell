@@ -40,12 +40,15 @@ function drawFaceRecognitionResults(results) {
     $('.denied').show();
 
   } else {
+
     $('.lds-ellipsis').hide();
+
+    $('#face').hide();
+
     $('.success').show();
   }
 
   faceapi.drawDetection(canvas, boxesWithText)
-
 }
 
 async function run() {
