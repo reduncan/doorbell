@@ -31,7 +31,6 @@ app.use(express.static(path.join(__dirname, './nodemailer')));
 board.on("ready", function () {
   var servo = new five.Servo(10);
   require('./public/js/auth-receiver')(servo, io);
-  // require('./sockets/auth-sockets')(io);
   require('./routes/api-routes.js')(app, servo);
   require('./routes/html-routes.js')(app);
 
