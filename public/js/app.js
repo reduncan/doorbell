@@ -52,7 +52,9 @@ function drawCanvas(img) {
   canvas.getContext('2d').clearRect(0, 0, canvas.width, canvas.height);
   canvas.getContext('2d').drawImage(img, 0, 0, img.width, img.height,
     x, y, img.width * ratio, img.height * ratio);
+    
 }
+
 
 document.querySelector('#takePhotoButton').addEventListener('click', onTakePhotoButtonClick);
 
@@ -61,7 +63,7 @@ $('body').keyup(function(event) {
   if ( keypress === 13 || keypress === 32 ) {
     takePhoto();
     setTimeout(onTakePhotoButtonClick, 3000);
-    setTimeout(autoCapture, 3000)
+    setTimeout(autoCapture, 3000);
   } 
 });
 
@@ -69,9 +71,11 @@ const takePhoto = function () {
   $('header').hide();
   $('.ring').hide();
   $('#face').show();
+  $('#face').css("display", "flex")
 };
 
 const autoCapture = function () {
   $('#takePhotoButton').hide();
   $('video').hide();
+  $('.lds-ellipsis').removeClass('hide')
 }
