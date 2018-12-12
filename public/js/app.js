@@ -78,6 +78,7 @@ const takePhoto = function () {
 const autoCapture = function () {
   $('#takePhotoButton').hide();
   $('video').hide();
+  $('.lds-ellipsis').removeClass('hide')
 }
 
 socket.on('emit-unlock', function () {
