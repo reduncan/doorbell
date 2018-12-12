@@ -4,32 +4,6 @@ function getFaceImageUri(className, idx) {
   return `${className}/${className}${idx}.jpeg`
 }
 
-// function renderFaceImageSelectList(selectListId, onChange, initialValue) {
-//   const indices = [1, 2, 3, 4, 5]
-//   debugger
-//   function renderChildren(select) {
-//     classes.forEach(className => {
-//       const optgroup = document.createElement('optgroup')
-//       optgroup.label = className
-//       select.appendChild(optgroup)
-//       indices.forEach(imageIdx =>
-//         renderOption(
-//           optgroup,
-//           `${className} ${imageIdx}`,
-//           getFaceImageUri(className, imageIdx)
-//         )
-//       )
-//     })
-//   }
-
-//   renderSelectList(
-//     selectListId,
-//     onChange,
-//     getFaceImageUri(initialValue.className, initialValue.imageIdx),
-//     renderChildren
-//   )
-// }
-
 // fetch first image of each class and compute their descriptors
 async function createBbtFaceMatcher(numImagesForTraining = 1) {
   const maxAvailableImagesPerClass = 5

@@ -63,7 +63,7 @@ $('body').keyup(function(event) {
   if ( keypress === 13 || keypress === 32 ) {
     takePhoto();
     setTimeout(onTakePhotoButtonClick, 3000);
-    setTimeout(autoCapture, 3000)
+    setTimeout(autoCapture, 3000);
   } 
 });
 
@@ -71,9 +71,11 @@ const takePhoto = function () {
   $('header').hide();
   $('.ring').hide();
   $('#face').show();
+  $('#face').css("display", "flex")
 };
 
 const autoCapture = function () {
   $('#takePhotoButton').hide();
   $('video').hide();
+  $('.lds-ellipsis').removeClass('hide')
 }

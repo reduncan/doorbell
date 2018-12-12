@@ -40,12 +40,12 @@ function drawFaceRecognitionResults(results) {
     //     console.log('-------get into face-api and trigger sendNodeMailer---------');
     //   }
     // );
-    $('#face').hide();
+    $('.lds-ellipsis').hide();
     $('.denied').show();
 
   } else {
     // $.ajax( {url: '/api/servo', method: "GET"});
-    $('#face').hide();
+    $('.lds-ellipsis').hide();
     $('.success').show();
   }
 
@@ -55,6 +55,7 @@ function drawFaceRecognitionResults(results) {
 
 async function run() {
   // load face detection, face landmark model and face recognition models
+
   await changeFaceDetector(selectedFaceDetector)
   await faceapi.loadFaceLandmarkModel('/')
   await faceapi.loadFaceRecognitionModel('/')
