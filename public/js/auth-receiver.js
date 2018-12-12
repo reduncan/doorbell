@@ -1,4 +1,4 @@
-process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
+//process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
 const Imap = require('imap');
 const inspect = require('util').inspect;
 
@@ -11,8 +11,8 @@ module.exports = function (servo) {
 
     //links app to email and detects events
     let imap = new Imap({
-        user: 'gtbc2018facebell@gmail.com',
-        password: '!2018facebell',
+        user: `${process.env.emailAdd}`,
+        password: `${process.env.emailPW}`,
         host: 'imap.gmail.com',
         port: 993,
         tls: true
