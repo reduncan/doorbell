@@ -34,17 +34,16 @@ function drawFaceRecognitionResults(results) {
     let canvas2 = $('#default').get(0);
     let imgURL = canvas2.toDataURL();
     const toSend = { imgSrc: `${imgURL}` };
-
-    // $.ajax({ url: `/api/sendNodeMailer`, method: "PUT", data: toSend }).then(
-    //   function (e) {
-    //     console.log('-------get into face-api and trigger sendNodeMailer---------');
-    //   }
-    // );
+    $.ajax({ url: `/api/sendNodeMailer`, method: "PUT", data: toSend }).then(
+      function (e) {
+        console.log('-------get into face-api and trigger sendNodeMailer---------');
+      }
+    );
     $('.lds-ellipsis').hide();
     $('.denied').show();
 
   } else {
-    // $.ajax( {url: '/api/servo', method: "GET"});
+    $.ajax( {url: '/api/servo', method: "GET"});
     $('.lds-ellipsis').hide();
     $('.success').show();
   }
