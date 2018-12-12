@@ -1,3 +1,5 @@
+const socket = io();
+
 //Photo capture
 const input = document.querySelector('input[type="range"]');
 let totalMatchFace = 0
@@ -24,14 +26,13 @@ navigator.mediaDevices.getUserMedia({ video: true })
   .then(photoSettings => {
     input.value = photoSettings.imageWidth;
   })
-  .catch(error => console.log('Argh!', error.name || error));
+  .catch(error => console.log(error.name || error));
 
 function onTakePhotoButtonClick() {
   imageCapture.takePhoto({ imageWidth: input.value })
     .then(blob => createImageBitmap(blob))
     .then(imageBitmap => {
       drawCanvas(imageBitmap);
-      console.log(`Photo size is ${imageBitmap.width}x${imageBitmap.height}`);
       run();
     })
     .catch(error => console.log(error));
@@ -77,5 +78,10 @@ const takePhoto = function () {
 const autoCapture = function () {
   $('#takePhotoButton').hide();
   $('video').hide();
-  $('.lds-ellipsis').removeClass('hide')
 }
+
+socket.on('emit-unlock', function () {
+  console.log("I got the io")
+  $('.denied').hide();
+  $('.success').show();
+});

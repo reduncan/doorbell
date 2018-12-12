@@ -1,5 +1,7 @@
 const express = require("express");
 const app = express();
+const server = require('http').createServer(app);
+const io = require('socket.io')(server);
 const path = require('path');
 var five = require("johnny-five");
 var board = new five.Board();
@@ -28,12 +30,13 @@ app.use(express.static(path.join(__dirname, './nodemailer')));
 
 board.on("ready", function () {
   var servo = new five.Servo(10);
-  require('./public/js/auth-receiver')(servo);
+  require('./public/js/auth-receiver')(servo, io);
+  // require('./sockets/auth-sockets')(io);
   require('./routes/api-routes.js')(app, servo);
   require('./routes/html-routes.js')(app);
 
   db.sequelize.sync({ force: true }).then(function () {
-    app.listen(PORT, function () {
+    server.listen(PORT, function () {
       console.log("App listening on PORT " + PORT);
     });
   })
