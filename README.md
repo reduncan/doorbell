@@ -39,6 +39,11 @@ To get started you will need to fork the repository and clone into the repositor
 
 We have our app set to run on port 3000. If you prefer to use a different port feel free to change the port after cloning into the repository. You can use the command npm start. *Note: we are using nodemon so we do not have to start and stop the server each time we make a change. 
 
+## Heroku App
+
+We have a deployed Heroku application that excludes using Servo Motor. But the all other features are still functional.
+Link: https://facebell.herokuapp.com/
+
 ## Contributing
 
 Looking to get started with Pull Request? Feel free to add a few pictures of yourself to the images folder. To do this:
@@ -57,9 +62,8 @@ Looking to get started with Pull Request? Feel free to add a few pictures of you
   * created base HTML and CSS
   * relayed information to our Instruction Team on progress and blockers
   * handled the DOM manipulation functions for our app
-
+  
 * **Ben Nguyen** - 
-<<<<<<< HEAD
   * Implement face-api into app.
   * Created a function to run capture image through face-api for face recognition.
   * Created a function to use store images as default photo for the face recognition. 
@@ -68,13 +72,6 @@ Looking to get started with Pull Request? Feel free to add a few pictures of you
   * set up testing gmail for group test
   * implement nodemailer
   * export function which sends MMS message and modify related function logic 
-=======
- * Implement face-api into app.
- * Created a function to run capture image through face-api for face recognition.
- * Created a function to use stored images as default photo for the face recognition. 
-
-* **Ming Shiuan Tsai** - 
->>>>>>> 53d7e63318c08154d5826977291da5c4f79ab7a6
 
 * **Weston Dease** - 
 
