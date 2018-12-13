@@ -1,9 +1,9 @@
-//process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
+// process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
 const Imap = require('imap');
 const inspect = require('util').inspect;
 
-module.exports = function (servo) {
-
+module.exports = function (servo, io) {
+    io.on('connection', function(socket){
     var state = {
         rightnow: new Date(),
         mailTick: 0
@@ -11,8 +11,8 @@ module.exports = function (servo) {
 
     //links app to email and detects events
     let imap = new Imap({
-        user: `${process.env.emailAdd}`,
-        password: `${process.env.emailPW}`,
+        user: 'gtbc2018facebell@gmail.com',
+        password: '!2018facebell',
         host: 'imap.gmail.com',
         port: 993,
         tls: true
@@ -49,9 +49,16 @@ module.exports = function (servo) {
                             console.log(authKey);
                         }
 
-                        if (authKey === `${process.env.phoneNum}` && state.mailTick <= 1) {
-                            state.mailTick++;
+                        if (authKey === `${process.env.phoneNum}`) {
+                            
                             servo.max();
+                        
+                        
+                                    console.log("emit-unlock sent");
+                        
+                                    io.emit('emit-unlock', { success : true});
+                                
+                            
                             setTimeout(() => {
                                 servo.center();
                             }, 1500);
@@ -68,7 +75,7 @@ module.exports = function (servo) {
     imap.once('ready', function () {
         openInbox(function (err, box) {
             if (err) throw err;
-            imap.search(['UNSEEN', ['SENTSINCE', state.rightnow.getTime()]], function (err, results) {
+            imap.search(['DELETED', ['SENTSINCE', state.rightnow.getTime()]], function (err, results) {
                 if (err) throw err;
                 imap.on('message', function (msg, seqno) {
                     msg.on('body', function (stream, info) {
@@ -88,4 +95,5 @@ module.exports = function (servo) {
         console.log('Connection ended');
     });
     imap.connect();
+})
 }

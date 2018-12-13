@@ -1,3 +1,5 @@
+const socket = io();
+
 //Photo capture
 const input = document.querySelector('input[type="range"]');
 let totalMatchFace = 0
@@ -24,14 +26,13 @@ navigator.mediaDevices.getUserMedia({ video: true })
   .then(photoSettings => {
     input.value = photoSettings.imageWidth;
   })
-  .catch(error => console.log('Argh!', error.name || error));
+  .catch(error => console.log(error.name || error));
 
 function onTakePhotoButtonClick() {
   imageCapture.takePhoto({ imageWidth: input.value })
     .then(blob => createImageBitmap(blob))
     .then(imageBitmap => {
       drawCanvas(imageBitmap);
-      console.log(`Photo size is ${imageBitmap.width}x${imageBitmap.height}`);
       run();
     })
     .catch(error => console.log(error));
@@ -52,7 +53,9 @@ function drawCanvas(img) {
   canvas.getContext('2d').clearRect(0, 0, canvas.width, canvas.height);
   canvas.getContext('2d').drawImage(img, 0, 0, img.width, img.height,
     x, y, img.width * ratio, img.height * ratio);
+    
 }
+
 
 document.querySelector('#takePhotoButton').addEventListener('click', onTakePhotoButtonClick);
 
@@ -61,7 +64,7 @@ $('body').keyup(function(event) {
   if ( keypress === 13 || keypress === 32 ) {
     takePhoto();
     setTimeout(onTakePhotoButtonClick, 3000);
-    setTimeout(autoCapture, 3000)
+    setTimeout(autoCapture, 3000);
   } 
 });
 
@@ -69,9 +72,17 @@ const takePhoto = function () {
   $('header').hide();
   $('.ring').hide();
   $('#face').show();
+  $('#face').css("display", "flex")
 };
 
 const autoCapture = function () {
   $('#takePhotoButton').hide();
   $('video').hide();
+  $('.lds-ellipsis').removeClass('hide')
 }
+
+socket.on('emit-unlock', function () {
+  console.log("I got the io")
+  $('.denied').hide();
+  $('.success').show();
+});
