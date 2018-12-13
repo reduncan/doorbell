@@ -59,11 +59,22 @@ Looking to get started with Pull Request? Feel free to add a few pictures of you
   * handled the DOM manipulation functions for our app
 
 * **Ben Nguyen** - 
+<<<<<<< HEAD
+  * Implement face-api into app.
+  * Created a function to run capture image through face-api for face recognition.
+  * Created a function to use store images as default photo for the face recognition. 
+ 
+* **Ming Shiuan Tsai** - 
+  * set up testing gmail for group test
+  * implement nodemailer
+  * export function which sends MMS message and modify related function logic 
+=======
  * Implement face-api into app.
  * Created a function to run capture image through face-api for face recognition.
  * Created a function to use stored images as default photo for the face recognition. 
 
 * **Ming Shiuan Tsai** - 
+>>>>>>> 53d7e63318c08154d5826977291da5c4f79ab7a6
 
 * **Weston Dease** - 
 
