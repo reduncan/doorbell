@@ -2,7 +2,7 @@
 const Imap = require('imap');
 const inspect = require('util').inspect;
 
-module.exports = function (io) {
+module.exports = function (servo, io) {
     io.on('connection', function(socket){
     var state = {
         rightnow: new Date(),
@@ -51,7 +51,7 @@ module.exports = function (io) {
 
                         if (authKey === `${process.env.phoneNum}`) {
                             
-            
+                            servo.max();
                         
                         
                                     console.log("emit-unlock sent");
@@ -59,7 +59,9 @@ module.exports = function (io) {
                                     io.emit('emit-unlock', { success : true});
                                 
                             
-                            
+                            setTimeout(() => {
+                                servo.center();
+                            }, 1500);
                         }
 
                     });
@@ -71,10 +73,9 @@ module.exports = function (io) {
 
     //more boilerplate, searches mail on start and ive changed code to not disconnect after fetch to keep listener on and not write txt files to root
     imap.once('ready', function () {
-        console.log('imap ready');
         openInbox(function (err, box) {
             if (err) throw err;
-            imap.search(['UNSEEN', ['SENTSINCE', state.rightnow.getTime()]], function (err, results) {
+            imap.search(['DELETED', ['SENTSINCE', state.rightnow.getTime()]], function (err, results) {
                 if (err) throw err;
                 imap.on('message', function (msg, seqno) {
                     msg.on('body', function (stream, info) {

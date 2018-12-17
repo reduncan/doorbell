@@ -25,6 +25,8 @@
     "imap": "^0.8.19",
     "nodemailer": "^4.7.0",
     "nodemon": "^1.18.6",
+    "sequelize": "^4.41.2",
+    "sinon": "^7.1.1",
     "socket.io": "^2.2.0",
     "util": "^0.11.1",
     "xoauth2": "^1.2.0"

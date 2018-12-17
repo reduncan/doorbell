@@ -40,6 +40,7 @@ function drawFaceRecognitionResults(results) {
     $('.denied').show();
 
   } else {
+    $.ajax( {url: '/api/servo', method: "GET"});
     $('.lds-ellipsis').hide();
     $('.success').show();
   }
