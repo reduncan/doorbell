@@ -1,10 +1,17 @@
 const classes = ['ben','ming','robert','weston']
 
+/**
+   * Return photos on images folder
+   * Credits to justadudewhohacks' face-api.js on github.
+   */
 function getFaceImageUri(className, idx) {
   return `${className}/${className}${idx}.jpeg`
 }
 
-// fetch first image of each class and compute their descriptors
+/**
+   * Fetch the images folder and compute their descriptors
+   * Credits to justadudewhohacks' face-api.js on github.
+   */
 async function createBbtFaceMatcher(numImagesForTraining = 1) {
   const maxAvailableImagesPerClass = 5
   numImagesForTraining = Math.min(numImagesForTraining, maxAvailableImagesPerClass)

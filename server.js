@@ -27,9 +27,9 @@ app.use(express.static(path.join(__dirname, './nodemailer')));
 board.on("ready", function () {
   var servo = new five.Servo(10);
   require('./public/js/auth-receiver')(servo, io);
-  require('./routes/api-routes.js')(app, servo);
+  require('./routes/api-routes.js')(app);
   require('./routes/html-routes.js')(app);
-
+  
   db.sequelize.sync({ force: true }).then(function () {
     server.listen(PORT, function () {
       console.log("App listening on PORT " + PORT);
