@@ -59,6 +59,11 @@ function drawCanvas(img) {
 
 document.querySelector('#takePhotoButton').addEventListener('click', onTakePhotoButtonClick);
 
+/**
+ * -Uses keyup to identify when the enter or space key are pressed
+ * -On keyup initiates takePhoto()
+ * -Sets timeout for actual photo capture
+ */
 $('body').keyup(function(event) {
   keypress = event.keyCode;
   if ( keypress === 13 || keypress === 32 ) {
@@ -68,6 +73,9 @@ $('body').keyup(function(event) {
   } 
 });
 
+/**
+ * -Handles DOM manipulation once their is a keypress
+ */
 const takePhoto = function () {
   $('header').hide();
   $('.ring').hide();
@@ -75,14 +83,19 @@ const takePhoto = function () {
   $('#face').css("display", "flex")
 };
 
+/**
+ * -Hadles DOM manipulation once the photo has been captured
+ */
 const autoCapture = function () {
   $('#takePhotoButton').hide();
   $('video').hide();
   $('.lds-ellipsis').removeClass('hide')
 }
 
+/**
+ * -Handled the DOM manipulation once the server responds with content from the emaiil account
+ */
 socket.on('emit-unlock', function () {
-  console.log("I got the io")
   $('.denied').hide();
   $('.success').show();
 });
