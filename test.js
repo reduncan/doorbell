@@ -10,8 +10,6 @@ chai.use(chaiHttp);
 // set a variable for making http requests.
 let request;
 
-
-
 describe('GET /api/visitors', function() {
   // clear the test db 
 
