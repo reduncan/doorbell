@@ -21,7 +21,7 @@ You will need to have the following installed on your machine to be able to run 
 * Express
 * Nodemon
 
-If you want to duplicate our project exactly you will need to also have a single-board microcontroller (we used an Arduino Uno) and a **motor (we used a ...).
+If you want to duplicate our project exactly you will need to also have a single-board microcontroller (we used an Arduino Uno) and a servo motor (we used a Tower Pro sg90).
 
 ## Getting Started
 
@@ -41,7 +41,7 @@ We have our app set to run on port 3000. If you prefer to use a different port f
 
 ## Heroku App
 
-We have a deployed Heroku application that excludes using Servo Motor. But the all other features are still functional.
+We have a deployed Heroku application that excludes using a Servo Motor. However, all other features are still functional.
 Link: https://facebell.herokuapp.com/
 
 ## Contributing

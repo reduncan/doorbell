@@ -19,5 +19,5 @@ describe('receiver', function() {
 describe('servo turner', function() {
     it('should return the angle of servo turn', function() {
         expect(turner()).to.equal();
-    })
-})
+    });
+});

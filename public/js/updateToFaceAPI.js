@@ -30,7 +30,6 @@ function drawFaceRecognitionResults(results) {
 
   const approvedFaces = boxesWithText.filter(e => e._text.indexOf('unknown') !== 0);
   if ((approvedFaces.length === 0 && boxesWithText.length !== 0) || boxesWithText.length === 0) {
-    console.log('call ajax');
     let canvas2 = $('#default').get(0);
     let imgURL = canvas2.toDataURL();
     const toSend = { imgSrc: `${imgURL}` };
