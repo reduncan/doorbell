@@ -15,6 +15,10 @@ let scoreThreshold = 0.5
 //mtcnn options
 let minFaceSize = 20
 
+/**
+   * Selecting a 1 of 3 face detector. 
+   * Credits to justadudewhohacks' face-api.js on github.
+   */
 function getFaceDetectorOptions() {
   return selectedFaceDetector === SSD_MOBILENETV1
     ? new faceapi.SsdMobilenetv1Options({ minConfidence })
@@ -25,53 +29,15 @@ function getFaceDetectorOptions() {
     )
 }
 
-function onIncreaseMinConfidence() {
-  minConfidence = Math.min(faceapi.round(minConfidence + 0.1), 1.0)
-  $('#minConfidence').val(minConfidence)
-  updateResults()
-}
-
-function onDecreaseMinConfidence() {
-  minConfidence = Math.max(faceapi.round(minConfidence - 0.1), 0.1)
-  $('#minConfidence').val(minConfidence)
-  updateResults()
-}
-
 function onInputSizeChanged(e) {
   changeInputSize(e.target.value)
   updateResults()
 }
 
-function changeInputSize(size) {
-  inputSize = parseInt(size)
-
-  const inputSizeSelect = $('#inputSize')
-  inputSizeSelect.val(inputSize)
-  inputSizeSelect.material_select()
-}
-
-function onIncreaseScoreThreshold() {
-  scoreThreshold = Math.min(faceapi.round(scoreThreshold + 0.1), 1.0)
-  $('#scoreThreshold').val(scoreThreshold)
-  updateResults()
-}
-
-function onDecreaseScoreThreshold() {
-  scoreThreshold = Math.max(faceapi.round(scoreThreshold - 0.1), 0.1)
-  $('#scoreThreshold').val(scoreThreshold)
-  updateResults()
-}
-
-function onIncreaseMinFaceSize() {
-  minFaceSize = Math.min(faceapi.round(minFaceSize + 20), 300)
-  $('#minFaceSize').val(minFaceSize)
-}
-
-function onDecreaseMinFaceSize() {
-  minFaceSize = Math.max(faceapi.round(minFaceSize - 20), 50)
-  $('#minFaceSize').val(minFaceSize)
-}
-
+/**
+   * Call 1 of 3 face detection. 
+   * Credits to justadudewhohacks' face-api.js on github.
+   */
 function getCurrentFaceDetectionNet() {
   if (selectedFaceDetector === SSD_MOBILENETV1) {
     return faceapi.nets.ssdMobilenetv1
@@ -88,6 +54,10 @@ function isFaceDetectionModelLoaded() {
   return !!getCurrentFaceDetectionNet().params
 }
 
+/**
+   * Change 1 of 3 face detection. 
+   * Credits to justadudewhohacks' face-api.js on github.
+   */
 async function changeFaceDetector(detector) {
   ['#ssd_mobilenetv1_controls', '#tiny_face_detector_controls', '#mtcnn_controls']
     .forEach(id => $(id).hide())
@@ -97,15 +67,15 @@ async function changeFaceDetector(detector) {
   faceDetectorSelect.val(detector)
   faceDetectorSelect.material_select()
 
-  $('#loader').show()
   if (!isFaceDetectionModelLoaded()) {
     await getCurrentFaceDetectionNet().load('/')
   }
-
-  $(`#${detector}_controls`).show()
-  $('#loader').hide()
 }
 
+/**
+   * Update face detector on selection. 
+   * Credits to justadudewhohacks' face-api.js on github.
+   */
 async function onSelectedFaceDetectorChanged(e) {
   selectedFaceDetector = e.target.value
 
@@ -113,6 +83,10 @@ async function onSelectedFaceDetectorChanged(e) {
   updateResults()
 }
 
+/**
+   * Change face detector value. 
+   * Credits to justadudewhohacks' face-api.js on github.
+   */
 function initFaceDetectionControls() {
   const faceDetectorSelect = $('#selectFaceDetector')
   faceDetectorSelect.val(selectedFaceDetector)

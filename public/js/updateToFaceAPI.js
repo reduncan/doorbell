@@ -1,32 +1,41 @@
 let faceMatcher = null
 
+/**
+   * Use capture image from canvas and detect all faces landmark and descriptor.
+   * Credits to justadudewhohacks' face-api.js on github.
+   */
 async function updateResults() {
   if (!isFaceDetectionModelLoaded()) {
     return
-  }
+  };
 
-  const inputImgEl = $('#default').get(0)
+  const inputImgEl = $('#default').get(0);
 
-  const options = getFaceDetectorOptions()
+  const options = getFaceDetectorOptions();
   const results = await faceapi
     .detectAllFaces(inputImgEl, options)
     .withFaceLandmarks()
-    .withFaceDescriptors()
+    .withFaceDescriptors();
 
-  drawFaceRecognitionResults(results)
+  drawFaceRecognitionResults(results);
 }
 
+/**
+   * Draw the all faces landmark and descriptor on overlay.
+   * If none matches with default photo, call sendNodeMailer API and display denied.
+   * If one matches with default photo, call run servo motor and display approved.
+   * 
+   * Credits to justadudewhohacks' face-api.js on github.
+   */
 function drawFaceRecognitionResults(results) {
-  const canvas = $('#defaultOverlay').get(0)
-  // resize detection and landmarks in case displayed image is smaller than
-  // original size
+  const canvas = $('#defaultOverlay').get(0);
   resizedResults = resizeCanvasAndResults($('#default').get(0), canvas, results)
   const boxesWithText = resizedResults.map(({ detection, descriptor }) =>
     new faceapi.BoxWithText(
       detection.box,
       faceMatcher.findBestMatch(descriptor).toString()
     )
-  )
+  );
 
   const approvedFaces = boxesWithText.filter(e => e._text.indexOf('unknown') !== 0);
   if ((approvedFaces.length === 0 && boxesWithText.length !== 0) || boxesWithText.length === 0) {
@@ -49,19 +58,21 @@ function drawFaceRecognitionResults(results) {
 
 }
 
+/**
+   * Load face detection and landmark model, find a match, then process the image.
+   * Credits to justadudewhohacks' face-api.js on github.
+   */
 async function run() {
-  // load face detection, face landmark model and face recognition models
-
   await changeFaceDetector(selectedFaceDetector)
   await faceapi.loadFaceLandmarkModel('/')
   await faceapi.loadFaceRecognitionModel('/')
 
-  // initialize face matcher with 1 reference descriptor per bbt character
   faceMatcher = await createBbtFaceMatcher(1)
 
-  // start processing image
   updateResults()
 }
+
+
 
 $(document).ready(function () {
   initFaceDetectionControls()
