@@ -21,7 +21,7 @@ You will need to have the following installed on your machine to be able to run 
 * Express
 * Nodemon
 
-If you want to duplicate our project exactly you will need to also have a single-board microcontroller (we used an Arduino Uno) and a **motor (we used a ...).
+If you want to duplicate our project exactly you will need to also have a single-board microcontroller (we used an Arduino Uno) and a servo motor (we used a Tower Pro sg90).
 
 ## Getting Started
 
