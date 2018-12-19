@@ -1,6 +1,9 @@
 const socket = io();
 
-//Photo capture
+/**
+   * Access the device camera to capture image.
+   * Credits to beaufortfrancois' GoogleChrome on github.
+   */
 const input = document.querySelector('input[type="range"]');
 let totalMatchFace = 0
 var imageCapture;
@@ -28,6 +31,10 @@ navigator.mediaDevices.getUserMedia({ video: true })
   })
   .catch(error => console.log(error.name || error));
 
+/**
+   * Capture the image, draw the image on canvas, then call face-api function.
+   * Credits to beaufortfrancois' GoogleChrome on github.
+   */
 function onTakePhotoButtonClick() {
   imageCapture.takePhoto({ imageWidth: input.value })
     .then(blob => createImageBitmap(blob))
@@ -42,7 +49,10 @@ document.querySelector('video').addEventListener('play', function () {
   document.querySelector('#takePhotoButton').disabled = false;
 });
 
-//Utils
+/**
+   * Take image capture and render on canvas
+   * Credits to beaufortfrancois' GoogleChrome on github
+   */
 function drawCanvas(img) {
   const canvas = document.querySelector('canvas');
   canvas.width = getComputedStyle(canvas).width.split('px')[0];
@@ -59,6 +69,11 @@ function drawCanvas(img) {
 
 document.querySelector('#takePhotoButton').addEventListener('click', onTakePhotoButtonClick);
 
+/**
+  * -Uses keyup to identify when the enter or space key are pressed
+  * -On keyup initiates takePhoto()
+  * -Sets timeout for actual photo capture
+  */
 $('body').keyup(function(event) {
   keypress = event.keyCode;
   if ( keypress === 13 || keypress === 32 ) {
@@ -68,6 +83,9 @@ $('body').keyup(function(event) {
   } 
 });
 
+/**
+  * -Handles DOM manipulation once their is a keypress
+  */
 const takePhoto = function () {
   $('header').hide();
   $('.ring').hide();
@@ -75,14 +93,19 @@ const takePhoto = function () {
   $('#face').css("display", "flex")
 };
 
+/**
+  * -Hadles DOM manipulation once the photo has been captured
+  */
 const autoCapture = function () {
   $('#takePhotoButton').hide();
   $('video').hide();
   $('.lds-ellipsis').removeClass('hide')
 }
 
+/**
+  * -Handled the DOM manipulation once the server responds with content from the emaiil account
+  */
 socket.on('emit-unlock', function () {
-  console.log("I got the io")
   $('.denied').hide();
   $('.success').show();
 });
