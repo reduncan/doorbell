@@ -13,6 +13,8 @@ For this project we were tasked with building the app as we wanted to as long it
 
 * As a user, I want to be able to respond to the MMS text alert stating whether or not the user is authorized.
 
+## See our application in action [HERE](https://youtu.be/WmqcEG7zyAg)
+
 ## Prerequisites
 
 You will need to have the following installed on your machine to be able to run our app:
